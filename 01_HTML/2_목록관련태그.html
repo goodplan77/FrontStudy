@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>목록 관련 태그</title>
+</head>
+<body>
+
+    <li>목록1</li>
+    <li>목록2</li>
+
+    <h1>ul : 순서 없는 목록 태그</h1> <!-- unordered list-->
+    <ul>
+        <li>HTML
+            <ul>
+                <!-- 목록안에 목록 또 넣기 가능-->
+                <li>글자관련</li>
+                <li>목록관련</li>
+            </ul>
+        </li>
+        <li>CSSS</li>
+        <li>JS</li>
+        <li>JQUERY</li>
+    </ul>
+
+    <br>
+
+    <hr>
+    
+    <h1>ol : 순서 있는 목록 태그</h1> <!-- ordered list-->
+    <ol>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JS</li>
+        <li>JQUERY</li>
+    </ol>
+
+    <br>
+
+    <ol type = "A"> <!-- a , A  , i , I , 1-->
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JS</li>
+        <li>JQUERY</li>
+    </ol>
+
+    <br>
+
+    <!-- 11부터 시작해야하는 경우-->
+    <!-- start. 시작값은 정수값 이어야함-->
+    <!-- 11 , 12 , 13 ....-->
+    <ol type = "1" start="11"> 
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JS</li>
+        <li>JQUERY</li>
+    </ol>
+
+    <br>
+
+    <!-- 역순으로 표기 하고 싶은 경우-->
+    <!-- 11 , 10 , 9 ....-->
+    <ol type = "1" start="11" reversed> 
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JS</li>
+        <li>JQUERY</li>
+    </ol>
+
+    <br>
+
+    <h1>dl(definition list) : 설명과 관련된 목록 태그</h1>
+    <dl>
+        <dt>제목을 작성하는 부분</dt>
+        <dd>제목과 관련된 설명을 작성하는 부분</dd>
+        <dd>여러줄 작성하기</dd>
+        <dt>또 다른 제목</dt>
+        <dd>또 다른 내용</dd>
+    </dl>
+    
+</body>
+</html>
