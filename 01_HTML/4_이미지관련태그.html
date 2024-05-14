@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 및 멀티미디어 관련 태그</title>
+</head>
+
+<body>
+
+    <h1>이미지 관련 태그</h1>
+    <!--
+        <img src="이미지의 경로" alt="이미지 대체 설명 문구" width="이미지의 가로크기"
+             heigth="이미지의 세로크기">
+    -->
+
+    <h3>* src 속성과 alt 속성</h3>
+    <img src="resources/image/passion.jpg" width="340px" height="340px" alt="열정맨">
+    <br>
+    <p>
+        * alt <br>
+        - 사진의 경로가 잘못되었거나 이미지를 제대로 표현할 수 없는 경우 대체 텍스트 용도 <br>
+        - 시각장애인을 위한 <mark>스크린리더(화면낭독기)</mark>에서 이미지를 읽어주는 설명 문구
+    </p>
+
+    <hr>
+
+    <h3>* width와 heigth 속성</h3>
+    <p>
+        이미지의 가로, 세로길이를 조정하는 속성<br>
+        고정길이와 가변길이 지정이 가능
+    </p>
+
+    <h4>고정길이단위(px) == 기본값 : 화면사이즈가 조정이되도 이미지 크기는 변동이 없음</h4>
+    <img src="resources/image/nuguri1.gif" width="200" height="150">
+    <img src="resources/image/nuguri1.gif" width="200px" height="150">
+    <img src="resources/image/nuguri1.gif" width="200px" height="150">
+    <img src="resources/image/nuguri1.gif" width="200px" height="150">
+    <img src="resources/image/nuguri1.gif" width="200px" height="150">
+    <img src="resources/image/nuguri1.gif" width="200px" height="150">
+
+    <br>
+
+    <h4>가변길이단위(%) : 화면사이즈(ViewPort) 혹은 부모요소 사이즈에 따라 변하는 길이 </h4>
+    <img src="resources/image/animal1.gif" width="23%" height="250" alt="동물1">
+    <img src="resources/image/animal2.gif" width="23%" height="250" alt="동물1">
+    <img src="resources/image/animal3.gif" width="23%" height="250" alt="동물1">
+    <a href="http://naver.com">
+        <img src="resources/image/animal1.gif" width="23%" height="250" alt="동물1">
+    </a>
+
+    <br>
+
+    <h4>반응형 이미지 : 화면사이즈(ViewPort)에 따라 보여줄 이미지를 별도로 지정</h4>
+    <picture>
+        <source srcset="resources/image/animal1.gif" media="(max-width:600px)"> <!-- 화면사이즈가 600 이하일떄 -->
+        <source srcset="resources/image/animal2.gif" media="(max-width:900px)"> <!-- 화면사이즈가 600 초과 900 이하일때 -->
+        <source srcset="resources/image/animal3.gif"> <!-- 화면사이즈가 900 초과일때 -->
+        <img src="resources/image/cat.jpg" alt="고양이"> <!--대체이미지-->
+    </picture>
+
+    <h3>이미지 맵</h3>
+    <img src="resources/image/passion2.jpg" width="500" usemap="#mymap">
+    <map name="mymap">
+        <!--
+            shape = rect | circle | poly
+            영역의 좌표 : x1, y1, x2, y2
+            원 : x1, y1, radius
+            다각형 : x1, y1, x2, y2, ..., xn, yn, ...
+        -->
+        <area shape="rect" coords="0,0,250,504" href="http://google.com">
+        <area shape="rect" coords="250,0,500,504" href="http://naver.com">
+    </map>
+
+    <h1>미디어 관련 태그</h1>
+
+    <h3>오디오 관련 태그</h3>
+    <!--
+        src : 오디오 경로
+        contorls : 미디어 제어 컨드롤러 표시
+        autoplay : 자동재생
+        loop : 반복재생
+        muted : 음소거
+        preload : 재생전에 미리 다운로드 할지 여부(auto | metadata | none)
+
+        브라우저별로 지원하지 않는 속성이 있다.
+    -->
+    <audio src="resources/audio/major.mp3" preload="metadata" controls autoplay loop muted>
+        <!-- 오디오 태그를 사용하지 못하는 경우 보여줄 문자열(fallback 문자열) -->
+        당신의 브라우저는 오디오 태그를 사용할 수 없습니다.
+    </audio>
+
+    <audio src="resources/audio/major.mp3" controls>
+        <source src="resources/audio/Kalimba.ogg">
+        <source src="resources/audio/major.mp3">
+        <source src="resources/audio/major.mp3">
+        당신의 브라우저는 오디오 태그를 사용할 수 없습니다.
+    </audio>
+
+    <br>
+
+    <h3>비디오 관련 태그</h3>
+    <!--
+        src : 비디오 경로
+        controls : 재생 컨트롤러 표시
+        autoplay : 자동재생
+        loop : 반복재생
+        muted : 음소거
+        poster : 비디오 재생전 보여줄 이미지
+    -->
+
+    <video src="resources/video/video1.mp4" controls autoplay loop width="400px" height="200px"
+        poster="resources/image/coffee.png">
+        당신의 브라우저는 video태그를 사용할수 없습니다.
+    </video>
+
+
+
+</body>
+
+</html>

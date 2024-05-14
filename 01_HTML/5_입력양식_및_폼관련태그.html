@@ -168,7 +168,7 @@
     <hr>
 
     <h2>라디오버튼과 체크박스 input태그</h2>
-    <form action="">
+    <form action="test">
         <h3>radio 버튼 (type="radio")</h3>
         <p>
             - 제시한 여러개의 값들중 오직 "한개"만 선택해야할때 사용 <br>
@@ -177,9 +177,92 @@
         </p>
 
         성별 :
-        <input type="radio" name="gender" id="x"> <label for="x">선택안함</label>  
-        <input type="radio" name="gender" id="m"> <label for="m">남자</label> 
-        <input type="radio" name="gender" id="f"> <label for="f">여자</label> 
+        <input type="radio" name="gender" id="x" value="X" checked> <label for="x">선택안함</label>  
+        <input type="radio" name="gender" id="m" value="M"> <label for="m">남자</label> 
+        <input type="radio" name="gender" id="f" value="F"> <label for="f">여자</label> 
+
+        <br><br>
+
+        <h3>체크박스(type="checkbox")</h3>
+        <p>
+            - 제시한 여러개의 값들 중 "여러개"를 선택해야하는 경우
+            - 현재 선택된(checked) 값들이 넘어감 <br>
+            - 넘기고자 하는 value 값을 명시해야함. (기본값 on/off)
+        </p>
+
+        취미 :
+        <!-- (input:checkbox[name-hobby]+label)*3-->
+        <input type="checkbox" name="hobby" id="base" value="baseball"><label for="base"></label>
+        <input type="checkbox" name="hobby" id="basket" value="basketball"><label for="basket"></label>
+        <input type="checkbox" name="hobby" id="soccer" value="soccer"><label for="soccer"></label>
+
+        <br><br>
+    
+        <input type="submit" value="제출">
+    </form>
+
+    <hr>
+
+    <h2>추가적인 input태그의 타입</h2>
+
+    <form action="etc">
+        <h3>색상을 지정할 수 있는 input (type="color")</h3>
+        <p>
+            - 색상선택 <input type="color" name="color">
+        </p>
+
+        <h3>type="file"</h3>
+        <p>
+            - 첨부파일을 하나 선택 할 수 있는 input <br>
+            - 첨부파일 선택 : <input type="file" name="upfile">
+        </p>
+
+        <h3>type="hidden"</h3>
+        <p>
+            - 특정값을 사용자에게 입력받지 않고 화면에 노출시키지도 않고
+            넘기고자하는 값이 있는경우 사용하는 input태그 <br>
+            Hidden 태그 : <input type="hidden" name="hidden" value="10">
+        </p>
+
+        <input type="submit" value="제출">
+    </form>
+
+    <hr>
+
+    <h2>select 태그 , option 태그</h2>
+
+    <p>
+        - 사용자에게 직접 키보드로 값을 입력 받는게 아니라
+        내가 제시한 옵션(option)들 중에서 선택할 수 있게끔 해주는 태그 <br>
+
+        - 제출 시 현재 선택된 (selected 값이) 넘어감 <br>
+        - 각각의 option에 value 속성값을 명시했을 경우 value 값이 전달되고,
+        명시하지 않은 경우 option 태그의 content 영역의 값이 넘어간다
+    </p>
+
+    <form action="select">
+        국적 : 
+        <select name="national" >
+            <option value="ko">한국</option>
+            <option value="us">미국</option>
+            <option value="eu">영국</option>
+            <option value="ru">러시아</option>
+            <option selected>선택안함</option>
+        </select>
+
+        <br><br>
+
+        <h4>dataList : select + input:text</h4>
+
+        좋아하는 색상 : <input type="text" name="color" list="colorList">
+        <datalist id="colorList">
+            <option>검정색</option>
+            <option>흰색</option>
+            <option>하늘색</option>
+            <option>핑크색</option>
+        </datalist>
+
+        <input type="submit" value="제출">
     </form>
 
 
