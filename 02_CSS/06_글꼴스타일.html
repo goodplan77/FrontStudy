@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글꼴 관련 스타일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        #ff1 {
+            font-family: 궁서체;
+        }
+
+        #ff2 {
+            font-family: 고딕체;
+        }
+
+        /*기본값*/
+        #ff3 {
+            font-family: 경민체, 궁서체, 고딕체;
+        }
+
+        /*기본값*/
+        /* 앞의 글꼴이 없다면 대체 글꼴 반영 */
+
+        /* :root -> html 요소를 선택 */
+
+        :root {
+            font-family: "Noto Sans KR", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 900;
+            font-style: normal;
+
+            /* css변수 */
+            --color-black: rgb(174, 18, 18);
+        }
+
+        /* :root가 먼저 선택 */
+        html {
+            font-family: 궁서체;
+        }
+
+        p {
+            color: var(--color-black);
+            /* :root 변수 활용*/
+        }
+
+        #fs1 {
+            font-size: 30px;
+        }
+
+        /* 상속받은 픽셀 기준 2배 */
+        #fs2 {
+            font-size: 2em;
+        }
+
+        /* 상속 받은 픽셀 기준 150% */
+        #fs3 {
+            font-size: 150%;
+        }
+
+        #fw1 {
+            font-weight: normal;
+        }
+
+        #fw2 {
+            font-weight: bold;
+        }
+
+        #fw3 {
+            font-weight: bolder;
+        }
+
+        #fw4 {
+            font-weight: lighter;
+        }
+        #fv{
+            font-variant: small-caps;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>글꼴 관련 스타일 속성(font-~)</h1>
+
+    <h3>font-family : 글꼴을 지정할때 사용</h3>
+    <pre>
+        선택자 {font-family : 글꼴명;}
+    </pre>
+
+    <!-- p#ff${글꼴테스트$}*3 -->
+    <p id="ff1">글꼴테스트1</p>
+    <p id="ff2">글꼴테스트2</p>
+    <p id="ff3">글꼴테스트3</p>
+
+    <h3>* 외부 웹 폰트 사용하는 방법</h3>
+    <p>
+        웹 폰트 제공 사이트 :
+        <a href="http://fonts.google.com">구글 웹폰트 사이트</a>
+    </p>
+
+    <p id="web-point">웹폰트 글꼴 테스트 1</p>
+
+    <h3>font-size : 글꼴의 크기를 변경할때 사용</h3>
+    <pre>선택자 {font-size:크기(px/em/%)}</pre>
+
+    <!-- ul>li#fs$*3 -->
+    <ul>
+        <li id="fs1">고정크기테스트(px)</li>
+        <li id="fs2">가변크기테스트(em)</li>
+        <li id="fs3">가변크기테스트(%)</li>
+    </ul>
+
+    <hr>
+
+    <h3>font-weight : 글꼴의 굵기를 표현할 때 사용</h3>
+    <pre>
+        font-weight : normal/bold/bolder/lighter/숫자;
+    </pre>
+
+    <ul>
+        <li id="fw1">원래굵기</li>
+        <li id="fw2">굵은글꼴</li>
+        <li id="fw3">더굵은글꼴</li>
+        <li id="fw4">가는글꼴</li>
+        <li id="fv">i love you</li>
+    </ul>
+</body>
+
+</html>

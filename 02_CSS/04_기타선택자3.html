@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기타선택자3</title>
+    <link rel="stylesheet" href="resources/css/4_stylesheet.css">
+</head>
+<body>
+    <h1>기타 선택자</h1>
+
+    <h3>:only-child</h3>
+    <pre>
+        특정 요소의 자식이 하나밖에 없을 때 선택
+    </pre>
+
+    <div id="test1">
+        <p>자식1</p>
+        <pre>자식2</pre>
+    </div>
+
+    <hr>
+
+    <h3>:only-of-type</h3>
+    <pre>
+        특정 요소의 자식중
+        지정된 형태와 같은 자식요소가 하나만 있을때 선택
+    </pre>
+
+    <div id="test2">
+        <p>자식1</p>
+        <pre>자식2</pre>
+    </div>
+
+    <hr>
+
+    <h3>:empty</h3>
+    <p>
+        자식 요소가 없는 요소를 선택
+
+        - 자식요소의 개념
+        태그 , 글자 , 띄어쓰기 모두를 자식요소라고 판단함.
+    </p>
+
+    <div id="test3">
+        <p><!--주석. 자식요소에 포함되지는 않음--></p>
+        <p>12345</p>
+        <p> </p>
+        <p>
+            <strong>중요!</strong>
+        </p>
+    </div>
+
+    <hr>
+
+    <h3>여러 선택자 동시 선택</h3>
+    <pre>
+        같은 스타일을 지정하고 싶으나
+        요소를 선택하는 선택자가 일치하지 않을때
+        선택자1 , 선택자2 , 선택자3 {css코드}
+    </pre>
+
+    <hr>
+
+    <h3>특정 요소 내부에 있는 특정 클래스만 선택하기</h3>
+
+    <ul id="test5-1">
+        <li class="c5">1</li>
+        <li class="c5">2</li>
+        <li class="c5">3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+    <ul id="test5-2">
+        <li class="c5">1</li>
+        <li class="c5">2</li>
+        <li class="c5">3</li>
+        <li class="c5"><span class="c5">4</span></li>
+        <li class="c5"><span class="c5">5</span></li>
+        <li class="c5">6</li>
+        <li class="c5 c6 c7">7</li>
+    </ul>
+    
+</body>
+</html>

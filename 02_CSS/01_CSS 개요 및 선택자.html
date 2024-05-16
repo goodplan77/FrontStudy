@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 개요 및 선택자</title>
+    
+    <!-- 외부 방식 스타일 적용 -->
+    <link rel="stylesheet" href="resources/css/test.css">
+
+    <!-- 내부 방식 스타일 적용 -->
+    <style>
+        h1 , p , pre{
+            color: red;
+        }
+
+        /*
+        * {
+            color: white;
+        }
+        */
+
+        
+        /* p{
+            color: red;
+        }
+
+        pre{
+            color: red;
+        } */
+
+        .class1{
+            color: yellowgreen;
+        }
+
+        .test{
+            color : teal;
+            font-size: 30px;
+        }
+
+        #id1{
+            color: pink;
+            background-color: yellow;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <h1>CSS(Cascading Style Sheet)</h1>
+    <pre>
+        마크업 언어(HTML)가 실제로 화면에
+        표시되는 방법들을 기술하는 언어.
+        - HTML 코드가 화면에 어떤 스타일로 보여질지 지정하는 언어
+
+        Cascading ?
+        - 연속적인 스타일 상속
+        - 상위요소에 적용한 스타일이 마지막 하위요소까지
+            연속적으로 전파(상속)됨을 의미.
+    </pre>
+
+    <div style="font-size: 1000px">
+        <div style="font-size: 30px">
+            <div>
+                <div>
+                    <p>폰트사이즈2</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+        CSS 작성 위치 (출처)
+        1) 인라인 스타일 (inline style) : 요소(태그)의 style 속성으로 작성된 스타일
+        2) 내부 스타일(internal style) : 현재 html 문서 안에서 <style></style> 태그를 통해 작성된 스타일
+        3) 외부 스타일(extetnal style) : 현재 문서 외부 css 파일 안에서 작성된 스타일
+
+        - 적용 우선 순위
+        인라인 -> 내부 == 외부 (head 서술순)
+        + 관례? : head에 필요한 css 파일 적용후 내부에 추가 적인 스타일적용
+    -->
+    <h1 style="color: teal;">CSS 기본 선택자</h1>
+
+    <!--
+        - 명시도(Specificity) : 스타일 규칙이 얼마나 구체적인지를 나타내는 개념.
+                                선택자에 의해 얼마나 구체적으로 요소를 선택했느냐에 따라 결정됨.
+        
+        - CSS Selector
+            html내의 특정 요소를 선택하고자 할 때 사용하는 기능.
+            요소를 선택해서 원하는 "스타일"을 적용 시킬수 있음.
+    -->
+
+    <h2>CSS 선택자의 종류</h2>
+
+    <h3>1. 모든(전체) 선택자 (*)</h3>
+    <p>
+        모든 요소들을 다 선택하고자 할 때 사용
+    </p>
+    <pre>
+        *{
+            스타일 속성: 값;
+            스타일 속성: 값;
+        }
+    </pre>
+
+    <h3>2. 태그 선택자 (태그명)</h3>
+    <p>
+        문서내에 같은 태그를 모두 선택할때 사용
+    </p>
+    <pre>
+        태그명 {
+            스타일
+        }
+    </pre>
+
+    <h3>3. 클래스 선택자 (.클래스명)</h3>
+    <p>
+        현재 문서 내에서 원하는 여러개의 요소를 선택하고자 할 때 사용
+    </p>
+    <pre .class>
+        .클래스명{
+            스타일
+        }
+    </pre>
+    <!--
+        HTML CLASS , ID명 명명규칙
+        자바 : 카멜 표기법
+        DB : 대문자 , 언더스코어 표기법
+        HTML : 하이픈 표기법(class1-1)
+    -->
+
+    <!-- ul>li.class1*5 -->
+    <ul>
+        <li class="class1">클래스선택자</li>
+        <li class="test">클래스선택자</li>
+        <li class="class1 test">클래스선택자</li>
+        <li>클래스선택자</li>
+        <li class="class1">클래스선택자</li>
+    </ul>
+
+    <h3>4. 아이디 선택자 (#아이디명)</h3>
+    <p>
+        문서내에 특정 html요소 하나만을 선택하고자 할 때 사용
+        단 , 그 요소가 id 속성을 통해 고유한 id값이 있어야함.
+        권장 : 한개만 적용
+    </p>
+    <pre>
+        #아이디명 {
+            스타일
+        }
+    </pre>
+
+    <!-- ol>li#id${아이디선택자}*4 -->
+    <ol>
+        <li id="id1">아이디선택자</li>
+        <li id="id2">아이디선택자</li>
+        <li id="id3">아이디선택자</li>
+        <li id="id4">아이디선택자</li>
+    </ol>
+</body>
+</html>

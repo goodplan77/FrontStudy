@@ -1,0 +1,30 @@
+/* only-child */
+#test1 > p:only-child{
+    background-color: steelblue;
+}
+
+/* only-of-type */
+#test2 > p:only-of-type {
+    background-color: red;
+}
+
+/* empty */
+#test3 > p:empty {
+    height: 30px;
+    background-color: lime;
+}
+
+#test5-1 .c5{
+    background-color: aquamarine;
+}
+
+/* #test5-2인 요소의 자식중 클래스가 c5인 span요소 선택 */
+#test5-2 span.c5 {
+    background-color: blue;
+}
+
+ .c5.c6.c7{
+    color: red;
+ }
+
+/* .c5 {background-color: red;} */
