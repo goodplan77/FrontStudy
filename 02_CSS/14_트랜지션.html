@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>트랜지션스타일</title>
+    <link rel="stylesheet" href="resources/css/14_transition.css">
+</head>
+<body>
+    <h1>트랜지션 관련 스타일</h1>
+    <h2>변형</h2>
+    <p>
+        요소가 특정동작(마우스클릭 , 마우스 올라감...)에 의해 변형되는것
+        변형(이동 , 확대 , 찌그러짐...)
+    </p>
+
+    <br><br>
+    <hr>
+
+    <h3>태그 이동시키기</h3>
+    <p>
+        translate 함수를 이용하여 요소를 특정위치로 이동시키기
+    </p>
+
+    <!-- (img[width=200][height=200]+br)*4 -->
+    <img class="translate" src="../01_HTML/resources/image/peng.jpg" alt="" width="200" height="200"><br>
+    <img class="translate" src="../01_HTML/resources/image/peng.jpg" alt="" width="200" height="200"><br>
+    <img class="translate" src="../01_HTML/resources/image/peng.jpg" alt="" width="200" height="200"><br>
+    <img class="translate" src="../01_HTML/resources/image/peng.jpg" alt="" width="200" height="200"><br>
+
+    <br><br><hr>
+
+    <h3>태그 확대하기</h3>
+    <p class="scale">
+        태그확대
+    </p>
+
+    <p class="scalex">
+        태그확대
+    </p>
+
+    <img src="../01_HTML/resources/image/peng.jpg" class="scaley" alt="">
+
+    <br>
+    <br>
+    <hr>
+
+    <h3>트랜지션 적용하기</h3>
+    <p>
+        태그가 변형속성에 의해 "변형"이 이루어질때 부드럽게 변형이 될 수 있게
+        해주는 속성
+        transition-property : 트랜지션을 적용할 변형속성
+        transition-duration : 지속시간
+        transition-timing-function : liner , ease , ease-in , ease-out
+    </p>
+
+    <br><br>
+    <hr>
+
+    <input type="checkbox">
+    <div class="transitiondiv transition transi"></div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+img {
+    margin-left: 200px;
+    width: 200px;
+    height: 200px;
+}
+
+body > .translate:first-of-type:hover{
+    transform: translate(200px , 200px);
+}
+
+body > .translate:nth-of-type(2):active{
+    transform: translateX(500px);
+}
+
+body > .translate:nth-of-type(3):active{
+    transform: translateY(500px);
+}
+
+body > .translate:nth-of-type(4):active{
+    /* 원근감 설정 */
+    /* 본인 기준 perspective 수치 만큼 떨어져 있다 */
+    /* translateZ 수치 만큼 이동? */
+    transform: perspective(500px) translateZ(100px);
+}
+
+h3~p {
+    margin-left: 200px;
+}
+
+.scale:hover{
+    transform: scale(1.5);
+}
+.scalex:hover{
+    transform: scaleX(1.5);
+}
+
+.scaley:hover{
+    transform: scaleY(1.5);
+}
+
+.transitiondiv {
+    width: 100px;
+    height: 100px;
+    border: 1px solid red;
+    transition-property: transform;
+    transition-duration: 4s;
+    /* transition-timing-function: cubic-bezier(.23,1.03,.94,-0.01); */
+    transition-timing-function: ease-in;
+}
+
+input:checked+div {
+    transform: translateX(2000px);
+    width: 500px;
+    height: 500px;
+    background-color: lime;
+}
+
+

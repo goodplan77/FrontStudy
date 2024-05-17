@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>레이아웃3</title>
+    <style>
+        div {
+            border: 1px solid black;
+            box-sizing: border-box;
+        }
+
+        .container-1 {
+            border: 2px dashed red;
+
+            position: relative;
+            /* 내부에 작성되는 요소에 상대적인 위치로 지정 */
+        }
+
+        .first {
+            width: 300px;
+            height: 300px;
+            background-color: yellow;
+        }
+        .second {
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            position: absolute;
+            /* 요소의 기존배치 순서를 무시 */
+
+            top: 50px;
+            left: 50px;
+        }
+
+        .third {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+
+            position: absolute;
+            top : 100px;
+            left : 100px;
+        }
+
+        .container-2 {
+            width: 300px;
+            height: 300px;
+            position: relative;
+        }
+
+        #center {
+            width: 50px;
+            height: 50px;
+            background-color: pink;
+            
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            margin: auto;
+        }
+
+        .fixed-area {
+            width: 120px;
+            text-align: center;
+            position: fixed;
+
+            right: 50px;
+            bottom: 50px;
+        }
+
+        .nav {
+            height: 50px;
+            background-color: pink;
+            border-bottom: 2px solid black;
+
+            position: sticky;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body id="body">
+    <h1>배치 관련 스타일(position)</h1>
+
+    <pre>
+        position은 요소의 위치를 지정하는 속성
+
+        position : relative; (상대적인)
+        - 지정된 요소 내부에 자식요소의 상대적인 기준이 되게 만드는 속성
+
+        - 내부에 작성되는 요소에 위치 지정시
+        top , bottom , left , right 속성을 사용 할 수 있음.
+
+        position : absolute; (절대적인)
+        - 기본 요소의 배치 순서를 무시하고 지정된 절대위치에 요소를 배치
+
+        position : fixed; (고정된)
+        - 항상 고정된 위치에 요소를 배치함
+    </pre>
+
+    <hr>
+
+    <div class="container-1">
+        <div class="first">first</div>
+        <div class="second">second</div>
+        <div class="third">third</div>
+    </div>
+
+    <hr>
+
+    <h2>요소를 영역 정 가운데에 배치하기</h2>
+    <div class="container-2">
+        <div id="center"></div>
+    </div>
+
+    <div class="fixed-area">
+        <a href="#body">위쪽으로 이동</a>
+    </div>
+
+    <hr>
+
+    <h2>position : sticky</h2>
+    <pre>
+        스크롤이 최상단에 도달했을때 화면에 스티커 처럼 붙여지는 스타일
+        - 평소에는 static(기본 position) 상태에서 최상단에 도달시 화면에 fixed
+            top , left , bottom , right 속성이 필수로 작성이 되어야 함.
+            -> 최상단에 도달시 어느 위치에 요소를 부착할것인지 여부를 지정해야 하기 때문.
+    </pre>
+
+    <br>
+
+    <div class="nav"></div>
+
+</body>
+
+</html>

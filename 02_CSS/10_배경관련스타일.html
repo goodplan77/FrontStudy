@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배경 관련 스타일</title>
+    <style>
+        body {
+            background-color: skyblue;
+        }
+
+        #div-bg {
+            background-color: white;
+            border: 30px solid blue;
+            padding: 20px;
+            box-sizing: border-box;
+            width: 50%;
+        }
+
+        .div-test {
+            margin: 30px;
+            border: 10px dashed;
+            padding: 20px;
+            background-color: yellow;
+        }
+
+        #div1 {
+            background-clip: border-box;
+        }
+        
+        #div2 {
+            background-clip: padding-box;
+        }
+
+        #div3 {
+            background-clip: content-box;
+        }
+
+        #id-img {
+            border: 1px solid black;
+            width: 70%;
+            height: 800px;
+
+            background-image: url("../01_HTML/resources/image/bono.jpg");
+            background-repeat: repeat-y /*repeat-x , no-repeat*/;
+            background-position: 50% 50%;
+            background-size: contain;
+            background-attachment: fixed;
+
+            background: url("../01_HTML/resources/image/bono.jpg") center center/cover no-repeat fixed;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>배경 관련 스타일</h1>
+    <h3>background-color : 배경색을 지정하고자 할때 사용</h3>
+    <div id="div-bg">
+        쟤곡과 즈렬 은쪄 저받딤가 짠엉딤드를 이름가놘고가. 뚠타돘썬을 아기네제 즈러짐긱으라 머자딧곰다 다노회오으로 은서라 시쟅베샌. 퇴여차망헨짹호 어옴알 도자그다 겍조에 옹랑온 헪이어여, 읜헤를 윈골 드의.
+        오사오흔으로 윽틴녑투를 악테됑 교츤 빕댜간거개홀은 섬됼티 어궁츈판은 그잉조신은. 수기알의 딘시가 하신 안전갸앱을 까가를 긴앧 나후징턴조차 녀주와. 교어겉디도 앨뇌 하아아, 헤드짜에다 디기는 비리를
+        독프흘고 른즈는 제갈딜안만 뤄믄다. 리 댈투기하아와 가노스는 팃앓고쿠에서 혾소. 햦현뤼는 섭구디 허학에 저혀는 이존다.
+    </div>
+
+    <br>
+
+    <h3>background-clip : 배경을 적용시키고자 하는 범위를 지정</h3>
+    <pre>
+        background-clip : border-box(기본값) / padding-box / content-box;
+    </pre>
+
+    <!-- .div-test#div*3 -->
+    <div class="div-test" id="div1">쟤곡과 즈렬 은쪄 저받딤가 짠엉딤드를 이름가놘고가. 뚠타돘썬을 아기네제 즈러짐긱으라 머자딧곰다 다노회오으로 은서라 시쟅베샌. 퇴여차망헨짹호 어옴알
+        도자그다 겍조에 옹랑온 헪이어여, 읜헤를 윈골 드의.
+        오사오흔으로 윽틴녑투를 악테됑 교츤 빕댜간거개홀은 섬됼티 어궁츈판은 그잉조신은. 수기알의 딘시가 하신 안전갸앱을 까가를 긴앧 나후징턴조차 녀주와. 교어겉디도 앨뇌 하아아, 헤드짜에다 디기는 비리를
+        독프흘고 른즈는 제갈딜안만 뤄믄다. 리 댈투기하아와 가노스는 팃앓고쿠에서 혾소. 햦현뤼는 섭구디 허학에 저혀는 이존다.</div>
+    <div class="div-test" id="div2">쟤곡과 즈렬 은쪄 저받딤가 짠엉딤드를 이름가놘고가. 뚠타돘썬을 아기네제 즈러짐긱으라 머자딧곰다 다노회오으로 은서라 시쟅베샌. 퇴여차망헨짹호 어옴알
+        도자그다 겍조에 옹랑온 헪이어여, 읜헤를 윈골 드의.
+        오사오흔으로 윽틴녑투를 악테됑 교츤 빕댜간거개홀은 섬됼티 어궁츈판은 그잉조신은. 수기알의 딘시가 하신 안전갸앱을 까가를 긴앧 나후징턴조차 녀주와. 교어겉디도 앨뇌 하아아, 헤드짜에다 디기는 비리를
+        독프흘고 른즈는 제갈딜안만 뤄믄다. 리 댈투기하아와 가노스는 팃앓고쿠에서 혾소. 햦현뤼는 섭구디 허학에 저혀는 이존다.</div>
+    <div class="div-test" id="div3">쟤곡과 즈렬 은쪄 저받딤가 짠엉딤드를 이름가놘고가. 뚠타돘썬을 아기네제 즈러짐긱으라 머자딧곰다 다노회오으로 은서라 시쟅베샌. 퇴여차망헨짹호 어옴알
+        도자그다 겍조에 옹랑온 헪이어여, 읜헤를 윈골 드의.
+        오사오흔으로 윽틴녑투를 악테됑 교츤 빕댜간거개홀은 섬됼티 어궁츈판은 그잉조신은. 수기알의 딘시가 하신 안전갸앱을 까가를 긴앧 나후징턴조차 녀주와. 교어겉디도 앨뇌 하아아, 헤드짜에다 디기는 비리를
+        독프흘고 른즈는 제갈딜안만 뤄믄다. 리 댈투기하아와 가노스는 팃앓고쿠에서 혾소. 햦현뤼는 섭구디 허학에 저혀는 이존다.</div>
+
+        <hr>
+
+        <h3>배경 이미지 테스트</h3>
+        <pre>
+            선택자{
+                background-image : url(이미지경로);
+                background-repeat : 배경이미지의 x/y축 반복
+                background-position : 배경이미지의 위치
+                background-size : contain(x/y축 중 한쪽이 꽉찰때까지 확대)
+                                , cover(모두 채울수 있도록 확대/축소)
+                background-attachement : scroll(페이지스크롤시 영역과 함께 스크롤)
+                                        , fixed(영역과 별개로 화면에 고정)
+                background-origin : 배경 이미지 시작위치
+            }
+        </pre>
+
+        <div id="id-img"></div>
+</body>
+
+</html>

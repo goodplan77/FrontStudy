@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애니메이션스타일</title>
+    <style>
+        .anitest:hover{
+            width: 200px;
+            animation-name: ani;
+            animation-duration: 4s;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;
+        }
+
+        .anitest2:active{
+            animation : ani2 5s infinite alternate;
+        }
+
+        @keyframes ani {
+            from {
+                background-color: green;
+                border: 1px solid black;
+            }
+            
+            to {
+                background-color: yellow;
+                border: 3px solid red;
+                transform: rotate(720deg);
+            }
+        }
+
+        @keyframes ani2 {
+            0% {
+                background-color: green;
+            }
+
+            30% {
+                transform: translate(50px,50px);
+            }
+
+            50% {
+                background-color: pink;
+                transform: scale(1.2);
+                border: 3px solid yellow;
+            }
+
+            100% {
+                transform: rotate(180deg);
+                background-color: blue;
+            }
+            
+        }
+        /*
+            animation 속성
+            
+            @keyframes 이름 {
+                진행상태에 따른 스타일 (0% ~ 100%)
+            }
+            animation-name : keyframes에 지정한 이름
+            animation-delay : 지연시간
+            animation-direction : normal | reverse | alternate
+            animtaion-iteration-count : 반복횟수 | infinite;
+            animation-duration : 실행시간
+            animation-timing-function : 속도곡선
+         */
+    </style>
+</head>
+
+<body>
+
+    <div class="anitest">기본 애니메이션 적용</div>
+    <div class="anitest2">애니메이션 적용</div>
+
+</body>
+
+</html>

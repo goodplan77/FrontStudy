@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>목록관련스타일</title>
+    <style>
+        #ul1 {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+
+            /* list-style-type: decimal; */
+            /* decimal , lower-alpha 등을 사용해 순서가 있게 보이게 할 수도 있음 */
+        }
+        #ul2 {
+            list-style-position: outside;
+            list-style-image: url("../01_HTML/resources/image/iconsample2.png");
+        }
+    </style>
+</head>
+<body>
+    <h1>목록 관련 스타일(list~)</h1>
+
+    <h3>list-style-type : 불릿기호를 변경 할 수 있는 스타일</h3>
+    <pre>
+        * 순서 없는 목록(ul)
+            list-style-type : disc/circle/square/none;
+        * 순서 있는 목록(ol)
+            list-style-type : decimal/decimal-leading-zero;
+                                lower-alpha/upper-alpha;
+                                lower-roman/upper-roman;
+    </pre>
+
+    <h4>순서 없는 목록</h4>
+    <!-- ul#ul1>li*4 -->
+    <ul id="ul1">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JS</li>
+        <li>JQUERY</li>
+    </ul>
+
+    <hr>
+    <h3>list-style-position : 불릿기호의 위치를 조정할때 사용</h3>
+    <h3>list-style-image : 불릿기호로 이미지를 적용할때 사용</h3>
+    <pre>
+        list-style-position : inside/outside (좀더 안쪽 / 바깥쪽)
+        list-style-image : url(적용시키고자 하는 이미지 경로);
+    </pre>
+
+    <!-- ul#ul2>li*5 -->
+    <ul id="ul2">
+        <li>강남지원 1관</li>
+        <li>강남지원 2관</li>
+        <li>강남지원 3관</li>
+        <li>당산지원</li>
+        <li>종로지원</li>
+    </ul>
+</body>
+</html>
