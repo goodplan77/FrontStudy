@@ -11,43 +11,63 @@
             border: 1px solid red;
             width: 1000px;
             height: 50px;
+            overflow: hidden;
         }
 
-        #navi {
-            display: flex;
-            flex-direction: row;
+        #nav>#navi{
+            list-style: none;
+            width: 100%;
+            height: 500%;
+
             padding: 0;
+            padding-top: 10px;
+            margin: 0;
             text-align: center;
         }
 
-        #navi>li{
-            list-style: none;
+        #nav>#navi>li{
+            float: left;
             width: 20%;
             height: 100%;
-            text-align: center;
         }
 
-        #navi>li>ul{
-            padding: 0;
+        #nav>#navi>li>ul{
             list-style: none;
-            text-align: center;
+            padding: 0;
+            position: relative;
+
+            padding-top: 40px;
+            float: left;
+
+            height: 100%;
+            width: 100%;
         }
 
-        #navi>li {
-            display: flex;
-            flex-direction: column;
+        #nav>#navi>li>ul>li{
+            width: 100%;
+            height: 20%;
         }
 
-        li>a,li>ul>li>a {
+        li>a,
+        li>ul>li>a {
             color: pink;
             text-decoration: none;
             font-weight: 600;
         }
 
-        li>a:hover,
-        li>ul>li>a:hover {
+        #nav:hover{
+            overflow: visible;
+        }
+
+        #nav>#navi>li>a:hover{
             color: red;
         }
+
+        #nav>#navi>li>ul>li>a:hover{
+            color: red;
+        }
+
+
     </style>
 </head>
 
