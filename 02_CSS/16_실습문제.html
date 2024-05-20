@@ -12,13 +12,6 @@
             padding: 0;
         }
 
-        .prod-list li{
-            float: left;
-            padding: 0;
-            margin: 10px;
-            overflow: hidden;
-        }
-
         .prod-list img {
             margin: 0;
             padding: 0;
@@ -27,25 +20,38 @@
             height: 240px;
         }
 
+        .prod-list li{
+            position: relative;
+            float: left;
+            padding: 0;
+            margin: 10px;
+            overflow: hidden;
+        }
+
+
         .prod-list .caption{
+            position: absolute;
+            top: 240px;
+
             width: 300px;
             height: 220px;
             padding-top: 20px;
-            text-align: center;        
+            text-align: center;
+
+            opacity: 1;
             
-            position: relative;
+            background-color: rgba(0, 0, 0, 0.5);
             color: white;
+            
+            
         }
 
-        .prod-list li:hover {
-            opacity: 0.7;
+        .prod-list li:hover .caption{
+            transform: translateY(-240px);
+            transition: 0.5s;
         }
 
-        .prod-list li> .caption:hover {
-            transform: translateY(-190px);
-            transition-duration: 2s;
-        } 
-
+       
     </style>
 </head>
 
