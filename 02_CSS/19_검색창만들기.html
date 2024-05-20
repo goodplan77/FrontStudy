@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div,
+        form,
+        input {
+            box-sizing: border-box;
+            border: 1px solid red;
+        }
+
+        .header {
+            height: 200px;
+            display: flex;
+        }
+
+        .header-1 {
+            flex-basis: 25%;
+        }
+
+        .header-1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header-2 {
+            flex-basis: 60%;
+        }
+
+        #search_form{
+            padding: 0 10%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #search_form > div{
+            height: 20%;
+        }
+
+        #search_form > div:first-child{
+            width: 80%;
+        }
+
+        #search_form > div:last-child{
+            width: 20%;
+        }
+
+        #search_form input{
+            width: 100%;
+            height: 100%;
+        }
+
+
+        .header-3 {
+            flex-basis: 15%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="header-1">
+            <img src="../01_HTML/resources/image/kh_logo.jpg">
+        </div>
+        <div class="header-2">
+            <form id="search_form">
+                <div class="search-form-keyword">
+                    <input type="search" name="keyword">
+                </div>
+                <div class="search-form-btn">
+                    <input type="submit" value="검색">
+                </div>
+            </form>
+        </div>
+        <div class="header-3"></div>
+    </div>
+</body>
+
+</html>

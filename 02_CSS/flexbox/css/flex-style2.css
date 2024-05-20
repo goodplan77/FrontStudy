@@ -1,0 +1,24 @@
+.flex-container {
+    height: 75vh;
+    /*
+        vh(Viewport Height) : 현재 보고 있는 화면 높이
+    */
+    display: flex;
+
+    flex-wrap: wrap;
+    /*  align - content
+        item이 포장된 라인을 정렬하는 방법
+        flex-wrap : wrap , wrap-reverse 에서만 사용 가능.
+
+        justify-content의 속성값들을 다 이용 가능
+    */
+
+    /*
+        교차축 방향 시작지점으로 포장됨 item 들 정렬
+    */
+    align-content: flex-start;
+    align-content: flex-end;
+    align-content: center;
+    align-content: space-around;
+    align-content: space-evenly;
+}

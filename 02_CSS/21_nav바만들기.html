@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #nav {
+            box-sizing: border-box;
+            border: 1px solid red;
+            width: 1000px;
+            height: 50px;
+        }
+
+        #navi {
+            display: flex;
+            flex-direction: row;
+            padding: 0;
+            text-align: center;
+        }
+
+        #navi>li{
+            list-style: none;
+            width: 20%;
+            height: 100%;
+            text-align: center;
+        }
+
+        #navi>li>ul{
+            padding: 0;
+            list-style: none;
+            text-align: center;
+        }
+
+        #navi>li {
+            display: flex;
+            flex-direction: column;
+        }
+
+        li>a,li>ul>li>a {
+            color: pink;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        li>a:hover,
+        li>ul>li>a:hover {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="nav">
+        <ul id="navi">
+            <li><a href="">Java</a></li>
+            <li><a href="">Oracle</a></li>
+            <li>
+                <a href="">Front-End</a>
+                <ul>
+                    <li><a href="">HTML</a></li>
+                    <li><a href="">CSS</a></li>
+                    <li><a href="">JavaScript</a></li>
+                    <li><a href="">jQuery</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">Server</a>
+                <ul>
+                    <li><a href="">JDBC</a></li>
+                    <li><a href="">Servlet</a></li>
+                    <li><a href="">JSP</a></li>
+                    <li><a href="">Ajax</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">Framework</a>
+                <ul>
+                    <li><a href="">MyBatis</a></li>
+                    <li><a href="">Spring</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

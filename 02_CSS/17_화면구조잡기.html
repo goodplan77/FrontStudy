@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            border: 1px solid red;
+            box-sizing: border-box;
+        }
+
+        .wrap {
+            width: 1000px;
+            height: 800px;
+            margin: auto;
+        }
+
+        .header {
+            width: 100%;
+            height: 20%;
+        }
+
+        .nav {
+            width: 100%;
+            height: 5%
+        }
+
+        .content {
+            width: 100%;
+            height: 55%;
+        }
+
+        .footer {
+            height: 20%
+        }
+
+        /* float 사용 */
+        /* .header > div , .content>div{
+            height: 100%;
+            float: left;
+        }
+
+        .header > div:nth-child(1){
+            width: 20%;
+        }
+
+        .header > div:nth-child(2){
+            width: 65%;
+        }
+
+        .header > div:nth-child(3){
+            width: 15%;
+        }
+
+        .content > div:nth-of-type(1){
+            width: 15%;
+        }
+
+        .content > div:nth-of-type(2){
+            width: 60%;
+        }
+
+        .content > div:nth-of-type(3){
+            width: 25%;
+        } */
+
+        /* flex 사용 */
+        .header{
+            display: flex;
+        }
+
+        .content{
+            display: flex;
+        }
+
+        .header > div:nth-child(1){
+            flex-basis: 20%;
+        }
+
+        .header > div:nth-child(2){
+            flex-basis: 65%;
+        }
+
+        .header > div:nth-child(3){
+            flex-basis: 15%;
+            flex-grow: 1;
+        }
+
+        .content > div:nth-of-type(1){
+            flex-basis: 15%;
+        }
+
+        .content > div:nth-of-type(2){
+            flex-basis: 60%;
+        }
+
+        .content > div:nth-of-type(3){
+            flex-basis: 25%;
+            flex-grow: 1;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="header-1"></div>
+            <div class="header-2"></div>
+            <div class="header-3"></div>
+        </div>
+        <div class="nav"></div>
+        <div class="content">
+            <div class="content-1"></div>
+            <div class="content-2"></div>
+            <div class="content-3"></div>
+        </div>
+        <div class="footer">
+        </div>
+    </div>
+</body>
+
+</html>
