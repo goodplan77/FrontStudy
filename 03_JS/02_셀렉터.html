@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        td.on {
+            background-color: royalblue;
+            color: white;
+        }
+
+        #myli2 {
+            color: tomato;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>셀렉터(Get Element)</h1>
+    <!-- ul>li#myli$.group{Element$}*5 -->
+    <ul>
+        <li id="myli1" class="group">Element1</li>
+        <li id="myli2">Element2</li>
+        <li id="myli3" class="group">Element3</li>
+        <li id="myli2">Element4</li>
+        <li id="myli5" class="group">Element5</li>
+    </ul>
+    <!-- input:button[onclink=test$]*3 -->
+    <input type="button" value="id" onclick="test1()">
+    <input type="button" value="tag name" onclick="test2()">
+    <input type="button" value="class name" onclick="test3()">
+
+    <script>
+        function test1() {
+            // id값이 myli2와 일치하는 요소를 선택
+            var li = document.getElementById('myli2');
+            li = document.querySelector("#myli2"); // CSS방식 선택자 사용. 단일 선택
+
+            console.log(li);
+            console.dir(li); // 객체 구조 열람
+
+
+
+            li.style.color = "#fff"; // 글자 색 변경
+            li.style["background-color"] = "magenta";
+            li.style.backgroundColor = "magenta"; // backgroundColor에 값을 대입(setter)
+
+            // -이어지는 첫 글자를 대문자로 설정
+
+            console.log(li.style.color); // color에 저장된 값을 가져옴(getter)
+
+            // myli3.style.color = "red"; // 권장하지 않음 (브라우저 마다 다름)
+
+        }
+
+        /*
+            getElementsByTagName 는 복수개의 요소를 가진 배열객체를 리턴.
+            -> HTMLCollection로 배열(Array)은 아님 -> 유사배열
+        */
+        function test2() {
+            var liArr = document.getElementsByTagName("li");
+            liArr = document.querySelectorAll('li');
+            console.log(liArr);
+            // console.log(liArr[0]);
+
+            var b = 50;
+
+            for (var i = 0; i < liArr.length; i++) {
+                console.log(liArr[i]);
+                liArr[i].style.color = `rgb(130,220,${b})`; // 템플릿 문법
+                //"rgb(130,220,"+b+")";
+                liArr[i].style.backgroundColor = "magenta";
+                b += 50;
+            }
+        }
+
+        function test3() {
+            var groups = document.getElementsByClassName('group');
+            console.log(groups); // HTMLCollection
+            groups = document.querySelectorAll('.group');
+            console.log(groups); // NodeList
+
+            for (var i = 0; i < groups.length; i++) {
+                var li = groups[i];
+
+                // 요소의 배경색을 체크 한후 배경색이 megenta 라면 springgreen
+                // 아니라면 magenta
+
+                if (li.style.backgroundColor == "magenta") {
+                    li.style.backgroundColor = 'springgreen';
+                } else {
+                    li.style.backgroundColor = "magenta";
+                }
+            }
+        }
+    </script>
+
+    <fieldset style="margin-top: 30px;">
+        <legend>취미</legend>
+        <!-- (input:checkbox[name=hobby][value]#hobby$+label[for=hobby$])*3 -->
+        <input type="checkbox" name="hobby" id="hobby1" value="음악감상"><label for="hobby1">음악감상</label>
+        <input type="checkbox" name="hobby" id="hobby2" value="영화시청"><label for="hobby2">영화시청</label>
+        <input type="checkbox" name="hobby" id="hobby3" value="게임"><label for="hobby3">게임</label>
+        <br><br>
+        <input type="button" value="name" onclick="test4();">
+    </fieldset>
+
+    <script>
+        function test4() {
+            var hobbies = document.getElementsByName('hobby');
+            var hobbies2 = document.querySelectorAll('input[name=hobby]');
+
+            for (var i = 0; i < hobbies.length; i++) {
+                var checked = hobbies[i].checked;
+                if (checked) {
+                    console.log(hobbies[i].value);
+                }
+            }
+        }
+    </script>
+
+    <fieldset>
+        <legend>이메일 입력</legend>
+        <input type="email" name="userEmail" id="userEmail" placeholder="이메일을 입력하시오">
+        <input type="button" value="확인" onclick="test5();">
+    </fieldset>
+
+    <script>
+        /*
+            #userEmail에 내용을 입력한 후 , 확인 버튼을 눌렀을때
+            사용자가 입력한 값을 경고창에 출력하기.
+            - 아이디로 접근
+            - 태그명으로 접근
+            - name 값으로 접근
+
+            출력 완료후 입력한 값 비우기
+        */
+        function test5() {
+            var userEmail = document.getElementById('userEmail');
+            var userEmail2 = document.getElementsByTagName('input')[7];
+            var userEmail3 = document.getElementsByName('userEmail')[0];
+            console.log(userEmail);
+            console.log(userEmail2);
+            console.log(userEmail3.value);
+
+            userEmail3.value = "";
+
+        }
+    </script>
+
+    <table>
+        <tr>
+            <td colspan="3">수강신청</td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <input type="checkbox" id="checkAll" onchange="test7();">
+                <label for="checkAll">모두 선택/해제</label>
+            </td>
+        </tr>
+        <tr>
+            <!-- (td>input:checkbox[name=subject]#subject0+label[for=subject0])*3 -->
+            <td>
+                <input type="checkbox" name="subject" id="subject0" onclick="test8(this)">
+                <label for="subject0">국어</label>
+            </td>
+            <td>
+                <input type="checkbox" name="subject" id="subject1" onclick="test8(this)">
+                <label for="subject1">영어</label>
+            </td>
+            <td>
+                <input type="checkbox" name="subject" id="subject2" onclick="test8(this)">
+                <label for="subject2">수학</label>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        // 1) 전체 선택 기능
+        function test7() {
+            var checkall = document.querySelector('#checkAll');
+            var subjects = document.querySelectorAll('[name=subject]');
+
+            // if (checkall.checked) {
+            //     for (var i = 0; i < subjects.length; i++) {
+            //         subjects[i].checked = true;
+            //     }
+            // } else {
+            //     for (var i = 0; i < subjects.length; i++) {
+            //         subjects[i].checked = false;
+            //     }
+            // }
+
+            for (var i = 0; i < subjects.length; i++) {
+                subjects[i].checked = checkall.checked;
+
+                checkall.checked ?
+                    subjects[i].parentNode.classList.add("on") :
+                    subjects[i].parentNode.classList.remove("on");
+
+            }
+
+        }
+
+        // 2) 개별 체크박스를 통해 전체선택 체크박스 제어하기
+        // 개별 체크박스 클릭시 td태그에 on 클래스 추가하기
+        function test8(check) {
+            var checkAll = document.querySelector('#checkAll');
+            var subjectAll = document.querySelectorAll('[name=subject]');
+
+            // check.parentNode.classList.toggle("on");
+
+            if (check.checked) {
+                check.parentNode.classList.add("on");
+            } else {
+                checkAll.checked = false;
+                check.parentNode.classList.remove("on");
+            }
+
+            for (var i = 0; i < subjectAll.length; i++) {
+                if (!subjectAll[i].checked) {
+                    checkAll.checked = false;
+                    return;
+                }
+                checkAll.checked = true;
+            }
+
+        }
+    </script>
+
+</body>
+
+</html>

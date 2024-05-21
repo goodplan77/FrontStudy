@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        JavaScript
+        - html의 조작과 변경을 담당하는 언어
+        - html로 웹문서의 틀을 만들고 , css 로 디자인을 하며 , js로 실행할 동작을 정의한다.
+        - 웹브라우저에서 실행 가능한 인터프리터 방식의 스크립트언어.
+        * 인터프리터 : 컴파일 과정 없이 한줄씩 실행되는 방식의 언어
+        (JAVA : 컴파일 + 인터프리터방식의 하이브리드 방식의 언어)
+
+        장점
+        1. 코드를 작성한 후 바로 실행결과를 볼 수 있기 때문에 간단한 개발을 하기 쉬움.
+        2. 클래스 , 접근제한자 , 반환형 , 변수의 자료형등의 개념이 없는 간단한 문법이기 때문에 초보자가 다루기 쉽다.
+        3. 굉장히 많은 라이브러리와 프레임워크가 존재함.
+
+        단점
+        1. 컴파일 방식의 언어보다 실행속도가 느리다
+        2. 큰 규모의 어플리케이션 개발에 있어서는 부적합 할 수 있다.
+     -->
+
+    <h1>자바스크립트 개요</h1>
+    <h2>1. 자바스크립트 사용방법</h2>
+
+    <ol>
+        <li>inline : 이벤트를 부여하고자 하는 요소 내에 간단한 소스코드를 작성해서 실행되게 하는 방법
+                <input type="button" value="실행1" onclick="alert('hello js'); console.log('하이');">
+        </li>
+        <li>
+            internal : html문서내에 script 태그를 추가하고 소스코드를 작성해서 실행되게 하는 방법
+            <input type="button" value="실행2" onclick="abc()">
+        </li>
+        <li onclick="window.alert('li태그 출력')">
+            external : 소스코드들을 별도의 js파일로 작성해서 가져다가 실행되게 하는 방법
+            <input type="button" value="실행3" onclick="test()">
+        </li>
+    </ol>
+
+    <script src="resources/js/01_test.js"></script>
+    <script>
+        // 자바 스크립트 작성 영역
+        /* 여러줄 주석 */
+        /** */
+        /*
+            window는 자바스크립트 내장 객체 , 브라우저 창이 열릴때마다 하나씩
+            생성되는 객체, 브라우저 창 안에 존재하는 몯느 요소들의 최상위 객체
+        */
+        function abc(){
+            window.alert('버튼클릭');
+        }
+    </script>
+
+    <button id="btn">콘솔창 출력</button>
+
+    <script>
+        /*
+            document ?  웹 문서마다 하나씩 만들어지는 객체로 , 작성한 html의 태그를 파싱해서 변환된
+                        js object를 가지고 있는 객체. 현재까지의 태그정보를 다 가지고 있고 , 그 태그중
+                        id값이 btn인 요소를 가져오라는 명령문 -> document.getElementById("btn");
+        */
+        var btn = document.getElementById("btn");
+
+        console.log(btn);
+        btn.onclick = log;
+        // log() 안됨. 결과 값이 아닌 함수 동작을 넣어야함
+        btn.onclick = function(){
+            console.log('익명함수 출력');
+        }
+        
+        function log(){
+            console.log('asdfg');
+        }
+    </script>
+
+    <h2>2. 자바스크립트 자료형 </h2>
+    <input type="button" value="자료형" onclick="dataType();">
+
+    <script>
+        function dataType(){
+            // 변수 선언시 var 키워드 사용.
+            var i;
+
+            console.log(i , typeof(i)); // undefined undefined(정의하지 않았다), 기본값
+
+            /*
+                값 대입이 일어날때 변수의 타입이 결정된다.
+                즉 , 변수에 대입되는 값에 따라서 자료형이 결정된다.
+            */
+            i = 100; // number = 정수 , 실수 포함
+            i = 3.57;
+            console.log(i , typeof(i));
+
+            i = "js is fun";
+            i = 'js is so fun'; // "" , '' 구분하지 않음
+            console.log(i , typeof(i)); // string
+
+            i = true;
+            i = false;
+            console.log(i , typeof(i)); // boolean
+
+            // 객체
+            // List<Object> 과 비슷
+            i = [1,2,3,"dd"];
+            console.log(i , typeof(i) , Array.isArray(i)); // object
+
+            // HashMap<k,v>
+            i = {
+                name : '홍길동',
+                age : 30,
+                hobby : ['축구','농구','야구']
+            }
+
+            console.log(i , typeof(i) , Array.isArray(i));
+
+            // 자바스크립트에서는 함수를 값으로 취급한다.
+            i = function (x,y){
+                return x+y;
+            }
+
+            console.log(i , typeof(i));
+            console.log(i(1,2/*,3*/)); // 넘치는 변수는 버려짐
+
+            i = new Date(); // 생성자 함수 호출
+            console.log(i,typeof(i));
+        }
+    </script>
+
+</body>
+
+</html>
