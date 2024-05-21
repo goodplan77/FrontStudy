@@ -6,7 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #nav {
+        div , ul , li , a{
+            box-sizing: border-box;
+            border: 1px solid red;
+        }
+
+        .nav{
+            width: 1000px;
+            height: 40px;
+        }
+
+        ul{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        #navi {
+            height: 100%;
+        }
+
+        .nav a{
+            text-decoration: none;
+            color: lightcoral;
+            font-size: 13px;
+            font-weight: 900;
+            
+            display: block;
+            width: 100%;
+            height: 100%;
+            line-height: 35px;
+        }
+
+        #navi>li{
+            flex-basis: 15%;
+            text-align: center;
+            height: 100%;
+        }
+
+        #navi > li > ul {
+            /* display: flex; */
+            display: none;
+            flex-direction: column;
+        }
+
+        #navi > li > ul a {
+            font-size: 10px;
+        }
+
+        #navi a:hover {
+            font-size: 15px;
+            color: crimson;
+        }
+
+        #navi > li > ul a:hover {
+            font-size: 13px;
+            color: crimson;
+        }
+
+        #navi > li > a:hover+ul , #navi > li > ul:hover{
+            display: flex;
+        }
+
+        /* .nav {
             box-sizing: border-box;
             border: 1px solid red;
             width: 1000px;
@@ -14,36 +77,37 @@
             overflow: hidden;
         }
 
-        #nav>#navi{
+        .nav>#navi {
             list-style: none;
             width: 100%;
             height: 500%;
 
             padding: 0;
-            padding-top: 10px;
+            padding-top: 15px;
             margin: 0;
             text-align: center;
+
         }
 
-        #nav>#navi>li{
+        .nav>#navi>li {
             float: left;
             width: 20%;
             height: 100%;
         }
 
-        #nav>#navi>li>ul{
+        .nav>#navi>li>ul {
             list-style: none;
             padding: 0;
             position: relative;
 
-            padding-top: 40px;
+            padding-top: 50px;
             float: left;
 
             height: 100%;
             width: 100%;
         }
 
-        #nav>#navi>li>ul>li{
+        .nav>#navi>li>ul>li {
             width: 100%;
             height: 20%;
         }
@@ -55,24 +119,22 @@
             font-weight: 600;
         }
 
-        #nav:hover{
+        .nav:hover {
             overflow: visible;
         }
 
-        #nav>#navi>li>a:hover{
+        .nav>#navi>li>a:hover {
             color: red;
         }
 
-        #nav>#navi>li>ul>li>a:hover{
+        .nav>#navi>li>ul>li>a:hover {
             color: red;
-        }
-
-
+        } */
     </style>
 </head>
 
 <body>
-    <div id="nav">
+    <div class="nav">
         <ul id="navi">
             <li><a href="">Java</a></li>
             <li><a href="">Oracle</a></li>
