@@ -37,3 +37,14 @@
  - 레이아웃 스타일 4 (배치 방법 - flex)
  - 실습문제 : (웹페이지 만들기)
 </details>
+
+<details>
+<summary>03. JavaScript </summary>
+
+ - 기본 개요
+ - Selector
+ - 입출력
+ - 변수 설정 , 유효 범위 , 형변환
+ - API
+ - 배열
+</details>
