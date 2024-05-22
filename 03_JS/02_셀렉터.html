@@ -54,8 +54,6 @@
             console.log(li);
             console.dir(li); // 객체 구조 열람
 
-
-
             li.style.color = "#fff"; // 글자 색 변경
             li.style["background-color"] = "magenta";
             li.style.backgroundColor = "magenta"; // backgroundColor에 값을 대입(setter)
@@ -152,9 +150,9 @@
         */
         function test5() {
             var userEmail = document.getElementById('userEmail');
-            var userEmail2 = document.getElementsByTagName('input')[7];
+            var userEmail2 = document.getElementsByTagName('input').namedItem('userEmail')[0];
             var userEmail3 = document.getElementsByName('userEmail')[0];
-            console.log(userEmail);
+            console.dir(userEmail);
             console.log(userEmail2);
             console.log(userEmail3.value);
 

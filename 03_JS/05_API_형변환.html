@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API</title>
+</head>
+
+<body>
+    <h1>JavaScript의 API들</h1>
+    <h1>String</h1>
+    <input type="button" value="실행" onclick="test1();">
+    <input type="button" value="charCounter" onclick="test2();">
+
+    <script>
+        function test1() {
+            //String 내장 객체의 메서드들.
+            var str = "Samsung Apple Lg";
+            console.log(str.length/*()*/); //legnth 속성. 함수 아님. 16
+            console.log(str.toUpperCase());
+            console.log(str.toLowerCase());
+            console.log(str.indexOf('ms')); // 2
+            console.log(str.lastIndexOf('g')); // 15
+            console.log(str.charAt(8)); // A
+            console.log(str[8]); // A -> 문자 배열 취급.
+
+            // 문자열 일부를 리턴
+            console.log(str.substring(2, 4)); // 인덱스 2~3 까지 문자열
+            console.log(str.substring(2)); // 인덱스 2~끝 까지 문자열
+            console.log(str.substring()); // 전부 복사
+            // 자바 메소드-오버로딩 개념이 아님.
+
+            console.log(str.substr(2, 2)); // 인덱스 2번부터 2개
+            console.log(str.substr(2)); // 인덱스 2번부터 모든 문자열 복사
+            console.log(str.substr()); // 전부 복사
+
+            var arr = str.split(" ") // [Samsung , Apple , Lg];
+            console.log(arr);
+        }
+
+        /*
+            매개변수로 두개의 인자를 받고 (문자열 , 문자열)
+            첫 문자열에서 문자가 몇번 출현하는지를 리턴하는 함수를 생성
+
+            countChar("hahaha",'a') => 3
+        */
+        function test2() {
+            var result = countChar("hahaha", 'a');
+            console.log(result);
+            result = countChar("abccba", "c");
+            console.log(result);
+            result = countChar("abcde", "x");
+            console.log(result);
+        }
+
+        function countChar(str, ch) {
+            var count = 0;
+            for (var i = 0; i < str.length; i++) {
+                str[i] == ch && count++;
+                // if(str[i]==ch){
+                //     count++;
+                // }
+            }
+            return count;
+        }
+    </script>
+
+    <h1>Math</h1>
+    <input type="button" value="실행" onclick="test3();">
+    <script>
+        function test3() {
+            var num = 123.456;
+            console.log(Math.round(num)); // 123
+            console.log(Math.round(num * 100) / 100) // 123.46
+            console.log(Math.ceil(num));  // 124
+            console.log(Math.ceil(num * 10) / 10);  // 123.5
+            console.log(Math.floor(num)); // 123
+            console.log(Math.floor(num * 10) / 10); // 123.4
+
+            console.log(Math.random()); // 0.0 <= x < 1.0
+            console.log(Math.floor(Math.random() * 10 + 1));
+        }
+    </script>
+
+    <input type="button" value="random" onclick="test4();">
+    <ul id="test-random">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <script>
+        /*
+            #test-random 의 하위태그에 1 ~ 100 사이의 난수를 대입할것.
+            단 , li 태그가 짝수라면 배경색깔을 springgreen 으로 변경할것.
+            random이 홀수라면 글자색깔을 magenta
+        */
+        var test4 = function () {
+            var lists = document.querySelectorAll('#test-random>li')
+
+            for (var i = 0; i < lists.length; i++) {
+                var random = Math.floor(Math.random() * 100 + 1);
+                lists[i].innerText = random;
+
+                if ((i + 1) % 2 == 0) {
+                    lists[i].style.backgroundColor = "springgreen";
+                }
+
+                if (random % 2 != 0) {
+                    lists[i].style.color = "magenta";
+                } else {
+                    lists[i].style.color = "black";
+                }
+            }
+        }
+    </script>
+
+    <h1>Date</h1>
+    <input type="button" value="실행" onclick="test5();">
+
+    <script>
+        var test5 = function () {
+            var now = new Date();
+            console.log(now);
+
+            var time1 = new Date(2000, 0, 1); // 년,월,일
+            console.log(time1);
+
+            var time2 = new Date(2000, 0, 1, 15, 30, 50); // 년,월,일,시,분,초
+            console.log(time2);
+
+            var time3 = new Date("1999/03/01 15:34:20");
+            console.log(time3);
+
+            //1999/03/01(화) 15:34:20
+            displayDateTime(time3);
+        };
+
+        var displayDateTime = function (dt) {
+            var yyyy = dt.getFullYear();
+            var mm = dt.getMonth() + 1;
+            var dd = dt.getDate() + 1;
+            var day = dt.getDay(); // 0~6
+            var dayArr = ['일', '월', '화', '수', '목', '금', '토'];
+            var hh = dt.getHours();
+            var mi = dt.getMinutes();
+            var ss = dt.getSeconds();
+            alert(`${yyyy}/${get2digit(mm)}/${get2digit(mm)}(${dayArr[day]} ${get2digit(hh)}:${get2digit(mi)}:${get2digit(ss)})`);
+        }
+
+        var get2digit = function (n) {
+            return n < 10 ? "0" + n : n;
+        }
+    </script>
+
+    <h2>형변환</h2>
+    <input type="button" value="실행" onclick="test6();">
+    <script>
+        var test6 = function () {
+            console.log(3 + 7 + "7", typeof (3 + 7 + "7")); // "107"
+            // number + string -> parsing(number) + string = string + string
+
+            console.log(7 - "7"); // 7 - "7" -> 7 - Number("7") -> 7 - 7 = 0
+            console.log(7 * "7"); // 49
+            console.log(7 / "7", 7 % "7"); // 1 , 0
+
+            // number (-,*,/,%) string -> number (-,*,/,%) parsing(string) = number (-,*,/,%) number
+
+            console.log(7 / "a"); // NaN -> Not a Number(숫자로 자동형변환이 불가능한 경우)
+            // 7 / Number("a") -> 7 / NaN -> NaN : NaN가 연산자에 포함된 경우 항상 결과값은 NaN
+
+            console.log(7 + true); // 7 + 1 = 8
+            console.log(7 + false); // 7 + 0 = 7
+
+            console.log([] * 1);
+            // [].toString() * 1
+            // "" * 1
+            // Number("") * 1
+            // 0 * 1 -> 0
+            console.log({} + 1); //[object Object]1
+
+            function fn() { };
+            console.log(fn + 1); // function fn(){}1
+        }
+    </script>
+
+    <h2>Number | parseInt | parseFloat</h2>
+    <input type="button" value="실행" onclick="test7();">
+    <script>
+        function test7() {
+            var num = "1234.567원";
+            console.log(Number(num)); // NaN
+            // 정수 , 실수 모두 변환 가능하나 , 파싱 불가능한 문자가 있으면 NaN을 리턴
+
+            console.log(parseInt(num)); // 1234.
+            // 문자가 있어도 좌측부터 가능한 위치까지 최대한 변환
+
+            console.log(parseFloat(num)); //1234.567
+        }
+    </script>
+
+    <br><br>
+    <input type="number" id="num1" placeholder="숫자1">
+    <input type="number" id="num2" placeholder="숫자2">
+    <input type="button" value="합 계산" onclick="test8();">
+
+    <script>
+        function test8() {
+            // num1에 작성한 값과 num2에 작성한 값을 더해서 콘솔창에 출력
+            var num1 = document.querySelector('#num1').value;
+            var num2 = document.querySelector('#num2').value;
+
+            // value의 경우 문자열 형태로 데이터 전송
+
+            console.log(Number(num1) + Number(num2));
+        }
+    </script>
+
+    <h2>NaN | Infinity</h2>
+    <input type="button" value="실행" onclick="test9();">
+    <script>
+        var test9 = function () {
+            console.log(10 / 0, typeof (10 / 0));
+
+            console.log(10 / 'a', typeof (10 / 'a'));
+
+            if (isNaN(10 / 'a')) {
+                console.log('숫자가 아닙니다.')
+            }
+
+            if (!isFinite(10 / 0)) {
+                console.log('0으로 나눌수 없습니다.');
+            }
+        }
+    </script>
+
+    <h2>논리형으로의 형변환</h2>
+    <input type="button" value="실행" onclick="test10();">
+
+    <script>
+        /*
+            변수, 리터럴값이 boolean 형으로 형변환 가능
+            Boolean(값) , if(값)
+
+            값이 존재 하지 않은것은 false로 치환 : 0 , -0 , 0.0 , "" , undefined , null , NaN
+            그 외의 값이 존재하는것은 true로 치환 : 123 , -123 , 3.14 , "안녕" , new Date() , [] , {}
+        */
+        var test10 = function () {
+            console.log(Boolean(123));
+            console.log(Boolean(-100));
+            console.log(Boolean(3.14));
+            console.log(Boolean("abc"));
+            console.log(Boolean('ㅋㅋㅋ'));
+            console.log(Boolean(new Date()));
+            console.log(Boolean([]));
+            console.log(Boolean({}));
+            // 전부 true
+            console.log("--------------------------")
+            console.log(Boolean(0));
+            console.log(Boolean(0.0));
+            console.log(Boolean(""));
+            console.log(Boolean(undefined));
+            console.log(Boolean(null));
+            console.log(Boolean(NaN));
+            // 전부 false
+
+            var name = prompt("이름을 입력하세요.");
+            // 1. "이름" 확인 => "이름"
+            // 2. "" 확인 => ""
+            // 3. 취소 => null
+
+            if(/*Boolean(*/name/*)*/){
+                alert("반갑습니다" + name + "님");
+            }
+
+            // 1) "0" == 0 -> Number("0") == 0 -> true
+            console.log("0" == 0);
+            // 2) [] == 0 -> [].toString == 0 -> Number("") == 0 -> true
+            console.log([] == 0);
+            // 3) [] == "0" -> [].toString == "0" -> '' == "0" -> false
+            console.log([] == "0");
+        }
+    </script>
+
+    <h2>엄격비교연산자 (일치연산자)</h2>
+    <input type="button" value="실행" onclick="test11();">
+    <script>
+        /*
+            1) 일반 동등비교 연산자
+            == , != : 타입이 다르면 자동형 변환 후 비교 수행
+
+            2) 엄격 동등비교 연산자
+            === : 값 , 타입이 모두 일치하거나 true
+            !== : 값이 같고 타입이 다르거나 , 타입은 같지만 값이 다르면 true
+
+            값과 더불어 자료형(타입)을 검사하는게 엄격 동등비교 연산자
+        */
+       var test11 = function() {
+            console.log(3 == '3'); // true
+            console.log(3 === '3'); // false
+
+            console.log(3 !== '3'); // true
+            console.log(3 !== 4); // true
+            console.log(3 === 3); // true
+            console.log(3 === Number('3')); // true
+
+            console.log(null == undefined); // true
+            console.log(null === undefined); // false
+            //js 에서는 항상 === 연산자를 통해 비교하는 것을 권장함
+  
+            // console.log([] === 0); // false
+            // console.log([] === "0"); // false
+       }
+    </script>
+
+    <h2>짧은 조건문</h2>
+    <input type="button" value="실행" onclick="test12();">
+    <script>
+        var test12 = function(){
+            var num = prompt("정수를 입력해주세요");
+
+            // if(num % 2 == 0){
+            //     alert("짝수");
+            // } else {
+            //     alert("짝수");
+            // }
+
+            // 짧은 조건문
+            // a(조건식) && b(실행문) : a가 참일때 b를 실행
+            // a(조건식) || b(실행문) : a가 거짓일때 b 실행
+
+            
+            // num % 2 == 0 && alert("짝수");
+            // num % 2 == 0 || alert("홀수");
+
+            var result;
+
+            num % 2 == 0 && (result = "짝수");
+            num % 2 == 0 || (result = "홀수");
+            
+            alert(result);
+        }
+    </script>
+
+</body>
+
+</html>

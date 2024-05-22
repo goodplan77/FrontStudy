@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>입출력</title>
+</head>
+
+<body>
+    <h1>입출력</h1>
+    <input type="button" value="confirm" onclick="test1();">
+    <input type="button" value="prompt" onclick="test2();">
+
+    <script>
+        // 확인/취소 버튼을 통한 논리식 처리 지원
+        function test1() {
+            var bool = /*window.*/confirm('이 파일을 삭제 하시겠습니까?');
+            console.log(bool);
+
+            if (bool) {
+                alert("파일삭제완료");
+            }
+        }
+
+        // prompt 는 사용자로 부터 문자열 입력값 처리 가능
+        function test2() {
+            var name = /*window.*/prompt("당신의 이름은?");
+            console.log(name); // 취소 : null 값
+
+            // name값이 잘 있는 경우 , 없는 경우
+            // 값이 없는경우(null , undefined , "" , 0 , -0 , NaN)-> false
+            if (!name) {
+                alert('올바른 이름을 입력하세요.');
+            }
+            /*if(name == null || name == ""){
+                alert('올바른 이름을 입력하세요.');
+            }*/ else {
+                alert(`당신의 이름은 ${name} 입니다.`);
+            }
+        }
+    </script>
+
+    <h2>innerHTML | innerText | OuterHTML</h2>
+    <!-- input:button[onclick=test$]*3 -->
+    <input type="button" value="innerHTML" onclick="test3();">
+    <input type="button" value="innerText" onclick="test4();">
+    <input type="button" value="OuterHTML" onclick="test5();">
+
+    <div class="wrapper"></div>
+    <script>
+        /*
+            innerHTML : 실제 태그(요소)의 content부분을 리턴 (텍스트 , 자식태그)
+            - getter : html이 포함된 content를 리턴
+            - setter : 주어진 문자열을 통해 html로 파싱해서 처리
+        */
+        function test3() {
+            var str = prompt("wrapper 태그 안에 내용을 기술하세요.");
+
+            var wrapper = document.querySelector('.wrapper');
+            wrapper.innerHTML = str; // setter
+            console.log(wrapper.innerHTML); // getter
+        }
+
+        /*
+            innerText : 태그안의 텍스트만 리턴
+            - getter : html 태그 무시 , 텍스트만 가져옴
+            - setter : html 태그로 parsing 처리 없이 문자열로 취급해서 대입
+        */
+        function test4() {
+            var str = prompt("wrapper 태그 안에 내용을 기술하세요.");
+
+            var wrapper = document.querySelector('.wrapper');
+            
+            console.log(wrapper.innerText); // getter. html 태그 요소 무시
+            wrapper.innerText = str; // setter
+        }
+
+        /*
+            outerHTML : 컨텐츠 뿐만 아니라 태그 자신도 포함
+        */
+        function test5() {
+            var wrapper = document.querySelector('.wrapper');
+            console.log(wrapper.outerHTML);
+            wrapper.outerHTML = "<mark>하이</mark>"
+        }
+    </script>
+</body>
+
+</html>

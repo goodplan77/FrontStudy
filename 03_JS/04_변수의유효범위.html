@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유효범위</title>
+</head>
+<body>
+    <h1>변수의 유효범위</h1>
+    <input type="button" value="전역 | 지역" onclick="test1();">
+    <input type="button" value="scope" onclick="test2();">
+
+    <script>
+        // debugger;
+        var a = 100; // 전역 변수
+        // console.log(window.a)
+        // window == global
+        // 전역 변수 == global == window. window 속성으로 등록
+        d = "gg"; // var 없이 선언된 변수는 전역변수로 등록
+
+        function test1() {
+            // debugger;
+            c = "zzz"; // var 없이 선언된 변수는 함수 내부라고 해도 전역변수로 등록
+
+            var a = '지역변수';
+            var b = 123; // 지역변수
+            var a = true; // 중복 선언 가능
+            console.log(a,b , this.a); // 일반함수 안에서 this 는 window
+    
+        }
+
+        // test1(); // c 변수 등록
+        // console.log(c);
+
+        /*
+            scope 유효 범위
+            var 변수는 자바언어처럼 block scope가 아님
+            var 변수는 function scope를 가짐. 즉 함수단위로 유효범위(scope)를 가지고 있음
+        */
+        function test2(){
+            var x = 10;
+
+            if(true){
+                var y = 100;
+            }
+
+            console.log(y); // 100
+
+            for(var i=0; i<10;i++){
+                console.log(i);
+            }
+
+            console.log(i);
+        }
+
+        if(true){
+            var k = 123.456;
+        }
+
+        // console.log(k);
+    </script>
+
+    <h1 onclick="test1();">Hoisting</h1>
+    <script>
+        // debugger;
+        // console.log(abcde); // undefined. 선언 부분만 hoisting
+        var abcde = "안녕"; // var키워드로 선언된 변수는 hoisting 됨
+        
+        // foo();
+        
+        function foo() { // 함수 선언식 전체는 hoisting 됨
+            console.log("foo");
+        }
+
+        // bar(); // bar is not a function. 현재 bar undefined
+
+        /*
+            함수 표현식
+        */
+        var bar = function() {
+            console.log("bar");
+        }
+
+        // bar(); // "bar"
+    </script>
+</body>
+</html>
