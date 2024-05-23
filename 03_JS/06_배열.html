@@ -49,8 +49,8 @@
             // for..of문
             // 배열 : item에 배열의 각 인덱스에 담긴 value값이 대입.
             // 객체 : 사용불가 x
-            for (var item of arr1) {
-                console.log(item);
+            for (var item of arr2) {
+                console.dir(item);
             }
         }
 
@@ -91,6 +91,344 @@
                 }
             }
         }
+    </script>
+
+    <h2>Array Methods</h2>
+    <input type="button" value="indexof" onclick="test3();">
+    <input type="button" value="concat" onclick="test4();">
+    <input type="button" value="join" onclick="test5();">
+    <input type="button" value="reverse" onclick="test6();">
+    <input type="button" value="sort" onclick="test7();">
+    <input type="button" value="push|pop" onclick="test8();">
+    <input type="button" value="unshift|shift" onclick="test9();">
+    <input type="button" value="slice" onclick="test10();">
+    <input type="button" value="splice" onclick="test11();">
+    <input type="button" value="실습문제" onclick="test12();">
+    <input type="button" value="forEach" onclick="test13();">
+    <input type="button" value="find|filter|map" onclick="test14();">
+
+    <ul id="hobby-list"></ul>
+    <hr>
+
+    <input type="button" value="실습문제" onclick="test15();">
+
+    <ul id="drink">
+        <li>coke</li>
+        <li>juice</li>
+        <li>coffee</li>
+        <li>beer</li>
+        <li>wine</li>
+    </ul>
+
+    <script>
+        var test3 = function () {
+            var arr = ['apple', 'melon', 'banana', 'melon'];
+            console.log(arr.indexOf('melon')); // 1
+            console.log(arr.lastIndexOf('melon')); // 3
+            console.log(arr.lastIndexOf('pig')); // -1
+        };
+
+        function test4() {
+            var arr1 = ['a', 'b', 'c'];
+            var arr2 = [1, 2, 3, 4, 5];
+            var arr3 = arr2.concat(arr1);
+            console.log(arr3);
+            console.log(arr1, arr2); // 원본 배열 영향 없음
+        }
+
+        function test5() {
+            var arr = [1, 2, 3, 4, 5];
+            var s = arr.join("-");
+            console.log(s, typeof (s));
+            var s = arr.join(); // 기본값 ","
+            console.log(s, typeof (s));
+            var s = arr.join(""); // 하나로 연결하기
+            console.log(s, typeof (s));
+        }
+
+        var test6 = function () {
+            var arr = [1, 2, 3, 4, 5];
+            arr.reverse();
+            console.log(arr);
+        };
+
+        var test7 = function () {
+            var arr = [4, 2, 3, 1, 5];
+            /*
+                sort 함수는 내부요소를 문자열로 취급하여 정렬하기 때문에
+                문자열 기준 오름차순 정렬이 기본
+            */
+            //arr.sort().reverse();
+            console.log(arr);
+
+            // 내림차순 정렬 구현
+            arr.sort(function (a, b) {
+                // if (a>b) return 1
+                // if (a==b) return 0
+                // if (a<b) return -1
+                return b - a;
+            })
+            console.log(arr);
+
+            var arr2 = [4, 2, 3, 1, 5, 15];
+            arr2.sort();
+            console.log(arr2);
+            // 문자열로 정렬됨
+
+            arr2.sort(function (a, b) {
+                return a - b;
+            });
+            // 내부 함수 형태로 구현 하여 정렬
+            console.log(arr2);
+        };
+
+        var test8 = function () {
+            var arr = []; // 배열의 주소값. 참조값?
+
+            var k = 1;
+            while (true) {
+                arr.push(k++);
+                if (k > 100) break;
+            }
+
+            // pop : 마지막 요소를 제거한 후 , 제거된 요소를 리턴.
+            // console.log(arr.pop());
+            // console.log(arr.pop());
+            console.log(arr);
+
+            //[100,99,98,97...1]
+            var copy = [];
+            while (arr.length > 0) {
+                copy.push(arr.pop());
+            }
+
+            console.log(arr);
+            console.log(copy);
+        };
+
+        var test9 = function () {
+            var arr = ['사과', '배', '아보카도'];
+            // unshift : 배열의 0번째 위치에 요소를 추가후 변경된 길이 리턴
+            // shift : 배열 0번째 위치에서 요소를 제거한후 제거된 요소를 리턴
+            arr.unshift("감자");
+            arr.unshift("양파");
+            console.log(arr);
+
+            console.log(arr.shift());
+            console.log(arr)
+
+        }
+
+        var test10 = function () {
+            var arr = ['a', 'b', 'c', 'd', 'e'];
+            /*
+                slice(시작인덱스 , 종료인덱스(미포함))
+                시작 인덱스부터 종료 인덱스 전까지의 요소를 가져 와서
+                새로운 배열로 반환
+            */
+            var copy = arr.slice(1, 4);
+
+            copy = arr.slice(1); // 1번 부터 끝까지
+            copy = arr.slice(0); // 전체
+
+            // (copy = arr.slice(0)).push(11111); // 전체 복사후 11111 추가
+
+            console.log(arr, copy);
+        }
+
+        var test11 = function () {
+            /*
+                요소 추가 & 제거
+                splice(startIndex , deleteCount , item1 , item2 ...)
+            */
+
+            var arr = ['a', 'b', 'c', 'd', 'e'];
+            // arr.splice(1,2,'x', ...addData); ?
+
+            // arr.splice(1, 1, 'x', 'x', 'x');
+            // console.log(arr);
+
+            // arr.splice(2,3,'k','h');
+            // console.log(arr);
+
+            // arr.splice(2,0,'f','r');
+            // console.log(arr);
+
+            arr.splice(2);
+            console.log(arr);
+        }
+
+        /*
+            사용자에게 prompt 를 이용해서 사용자의 취미리스트를
+            입력 받은 후
+            ex) 농구,수영,캠핑,낚시
+            입력 받은 취미를 배열형태로 담아서 사전순 정렬을 한 후
+            ul#hobby-list의 자식 li태그에 추가 하시오.
+        */
+        var test12 = function () {
+            var hobbies = prompt("취미를 , 로 구분하여 입력하세요.");
+            // var list = hobbies.split(',');
+            // list.sort();
+            // var input = document.querySelector('ul#hobby-list');
+
+            // var temp = "";
+            // for (var i of list) {
+            //     temp += "<li>" + i + "</li>";
+            // }
+
+            // input.innerHTML = temp;
+            if (!hobbies) {
+                alert("입력값이 유효하지 않습니다.")
+                return;
+            }
+            var arr = hobbies.split();
+            arr.sort();
+            var ul = document.querySelector('#hobby-list');
+            for (var hobby of arr) {
+                ul.innerHTML += `<li>${hobby}</li>`;
+            }
+
+        }
+
+        var test13 = function () {
+            /*
+                배열.forEach(함수(element , index , 배열){
+                    // 실행할 코드
+                });
+                forEach는 유사 배열(NodeList)도 사용 가능.
+            */
+
+            var arr = [1, 2, 3, 4, 5];
+            var sum = 0;
+            arr.forEach(function (value, index, array) {
+                console.log(value, index, array);
+                sum += value;
+            });
+
+            console.log(sum);
+
+            var btnArr = document.querySelectorAll("input[type=button]");
+            // btnArr = document.getElementsByTagName('input');
+            // HTMLCollections 에서는 forEach 사용 불가
+
+            var btnValues = [];
+            btnArr.forEach(function (value, index, arr) {
+                console.log(index, value);
+                btnValues.push(value.value);
+            });
+
+            console.log(btnValues);
+        }
+
+        var test14 = function () {
+            /*
+                find : 찾는다. 내가 지정한 조건을 만족하는 1개의 요소를 반환
+                만족하는게 없다면 undefined 반환
+                    arr.find(콜백함수(v,i,a){
+                     return true/false가 나오도록 설정
+                    });
+
+                filter : 지정한 조건을 만족하는 n개의 요소를 배열로 반환
+                만족하는 요소가 1개라도 없다면 [] 반환 (빈배열)
+                    arr.filter(콜백함수(v,i,a){
+                        return true/false가 나오도록 설정
+                    });
+
+                map : 요소를 내가원하는 요소로 "변환"후 반환
+                    arr.map(function(v,i,a){
+                        return 반환시킬값
+                    });
+
+            */
+
+            var objArr = [
+                { id: 'kkh1', name: '경호1' },
+                { id: 'kkh2', name: '경호2' },
+                { id: 'kkh3', name: '경호3' },
+                /*new Object(*/{ id: 'kkh4', name: '경호4' }/*)*/
+            ];
+
+            var findone = objArr.find(function (value, index) {
+                if (value.id == 'kkh1') { // java : equals();
+                    return true;
+                }
+            });
+            console.log(findone);
+
+            var filteredArr = objArr.filter(function (value, index) {
+                if (value.id.includes('kkh')) {
+                    return true;
+                }
+            });
+            console.log(filteredArr);
+
+            var mappedArr = objArr.map(function (value, index) {
+                return { newId: `new${value.id}` };
+            });
+            console.log(mappedArr);
+        }
+
+        // test(function(){
+        //     console.log('aaaaa');
+        // })
+
+        // function test (callbackfn){
+        //     console.log(callbackfn,typeof(callbackfn));
+        //     callbackfn();
+        // }
+
+        var test15 = function () {
+            var drink = [];
+            var findOne;
+            var filteredArr;
+            var mappedDrink;
+            var priceArr = [2000, 1600, 4000, 8000, 15000];
+
+        /**
+          * 1) 배열 drink에 #drink태그의 자식li태그 텍스트를 추가. (forEach활용)
+          * ['coke', 'juice', 'coffee', 'beer', 'wine']
+          * 2) 배열 drink에서 'ff'가 들어가는 요소를 선택해서 findOne 반환. (find 활용)
+          *  coffee
+          * 3) 배열 drink에서  'o'가 들어가는 요소들을 선택해서 filteredArr 반환. (filter활용)
+          * ['coke','coffee']
+          * 4) 배열 drink를 활용하여 음료객체 배열을 생성 한후 mappedDrink에 반환(map 활용)     * 
+          * [{"menu": "coke","price": 2000},{"menu": "juice","price": 1600},{"menu": "coffee","price": 4000},
+          *  {"menu": "beer","price": 8000},{"menu": "wine","price": 15000}]
+        */
+
+            // 1)
+            var drinklist = document.querySelectorAll('#drink>li');
+            drinklist.forEach(function(value){
+                drink.push(value.innerText);
+            });
+
+            console.log(drink);
+
+            // 2)
+            findOne = drink.find(function(value){
+                if(value.indexOf('ff') > 0) {
+                    return true;
+                }
+            });
+            console.log(findOne);
+
+            // 3)
+            filteredArr = drink.filter(function(value){
+                if(value.indexOf('o') > 0) {
+                    return true;
+                }
+            });
+
+            console.log(filteredArr);
+
+            // 4)
+            mappedDrink = drink.map(function(value , index){
+                return {"menu": value,"price": priceArr[index]};
+            });
+
+            console.log(mappedDrink);
+        }
+
     </script>
 
 </body>
