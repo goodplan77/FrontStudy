@@ -34,19 +34,26 @@
 	<div id="area"></div>
 	<script type="text/javascript">
 		function printValue() {
-			var inputtype = document.querySelectorAll('input');
+			var list = document.querySelectorAll('label , input');
 			var temp = '';
-			for (var i of inputtype) {
-				if (i.id) {
-					temp += "구입상품 : " + i.value + "<br>"
-				} else if (i.name) {
-					temp += "구매가격 : " + i.value + " 만원" + "<br>"
-				} else {
-					temp += "구입자 : " + i.value + " 님" + "<br>"
+			
+			for (var i = 0; i < list.length; i++) {
+				if (list[i].tagName == 'LABEL') {
+					temp += list[i].innerText;
+				}
+
+				if (list[i].tagName == 'INPUT') {
+					temp += list[i].value;
+
+					if (i == list.length - 1) {
+						temp += '만원';
+					} else {
+						temp += '\n';
+					}
 				}
 			}
 
-			document.querySelector('#area').innerHTML = temp;
+			document.querySelector('#area').innerText = temp;
 		}
 	</script>
 </body>
