@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>실습문제 1</title>
-<style type="text/css">
-#area {
-	width: 400px;
-	height: 150px;
-	background: #ffff99;
-	border: 1px solid #6666ff;
-}
-</style>
+	<meta charset="UTF-8">
+	<title>실습문제 1</title>
+	<style type="text/css">
+		#area {
+			width: 400px;
+			height: 150px;
+			background: #ffff99;
+			border: 1px solid #6666ff;
+		}
+	</style>
 </head>
+
 <body>
 	<h2>@실습문제 1</h2>
 	<label>구매자 : </label>
@@ -32,7 +34,21 @@
 	<div id="area"></div>
 	<script type="text/javascript">
 		function printValue() {
+			var inputtype = document.querySelectorAll('input');
+			var temp = '';
+			for (var i of inputtype) {
+				if (i.id) {
+					temp += "구입상품 : " + i.value + "<br>"
+				} else if (i.name) {
+					temp += "구매가격 : " + i.value + " 만원" + "<br>"
+				} else {
+					temp += "구입자 : " + i.value + " 님" + "<br>"
+				}
+			}
+
+			document.querySelector('#area').innerHTML = temp;
 		}
 	</script>
 </body>
+
 </html>

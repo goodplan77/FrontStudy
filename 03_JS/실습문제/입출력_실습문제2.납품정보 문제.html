@@ -54,11 +54,27 @@
 	</form>
 	<script type="text/javascript">
 		function showVal(){
-			
+			var showval = document.querySelector('input#productLevel');
+			document.querySelector('#pVal').innerText = showval.value;
 		}
 
 		function printProduct(){
+			var result = "";
 
+			var input1 = document.querySelector('#productName').value;
+			input1 = "상품명 : " + input1 + "<br>";
+			var input2 = document.querySelector('#productAmount').value;
+			input2 = "납품수량 : " + input2 + "<br>";
+			var input3 = document.querySelector('#productLevel').value;
+			input3 = "납품등급 : " + input3 + "<br>";
+			var input4 = document.querySelector('#message').value;
+			input4 = "기타사항 : " + input4;
+
+			result = input1 + input2 + input3 + input4;
+
+			document.querySelector('#result').innerHTML = result;
+
+			confirm(result);
 		}
   </script>
 </body>
