@@ -34,26 +34,16 @@
 	<div id="area"></div>
 	<script type="text/javascript">
 		function printValue() {
-			var list = document.querySelectorAll('label , input');
 			var temp = '';
-			
-			for (var i = 0; i < list.length; i++) {
-				if (list[i].tagName == 'LABEL') {
-					temp += list[i].innerText;
-				}
+			var labellist = ['구입자 : ' , '구입상품 : ' , '구매가격 : '];
+			var inputlist = document.querySelectorAll('input');
 
-				if (list[i].tagName == 'INPUT') {
-					temp += list[i].value;
-
-					if (i == list.length - 1) {
-						temp += '만원';
-					} else {
-						temp += '\n';
-					}
-				}
+			for(var i = 0 ; i < labellist.length ; i++){
+				temp += labellist[i] + ' ' + inputlist[i].value;
+				temp += (i == 2 ? '만원' : '<br>' );
 			}
 
-			document.querySelector('#area').innerText = temp;
+			document.querySelector('#area').innerHTML = temp;
 		}
 	</script>
 </body>

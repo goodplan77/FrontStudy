@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수</title>
+</head>
+
+<body>
+    <h1>Function</h1>
+    <h2>함수작성</h2>
+
+    <script>
+
+        // 함수 선언식 - 전체 Hoisting
+        function foo() {
+
+        }
+
+        // 함수 표현식 (함수를 값으로써 표현) - 선언 부분만 Hoisting
+        var bar = function far() {
+
+        }
+
+        bar();
+        // far(); // far is not defined
+
+        /*
+            1회용함수 생성후 재호출 못하도록 막는방법
+            즉시실행함수 Immediately Invoked Function Expression
+            IIFE
+        */
+        (function () {
+            console.log("life");
+        })();
+
+        (function (name) {
+            console.log("안녕 " + name);
+        })("경호");
+
+    </script>
+
+    <h2>매개변수 | 매개인자 </h2>
+    <input type="button" value="실행" onclick="test1(1,2,3); test1('한','글'); test1(true,false)">
+    <input type="button" value="arguments" onclick="test2();">
+
+    <script>
+
+        function add(...y) {
+            console.log(y);
+            var sum = 0;
+            for (var i = 0; i < arguments.length; i++) {
+                sum += isNaN(Number(arguments[i])) ? 0 : arguments[i];
+            }
+
+            console.log(sum);
+        }
+
+        /*
+            매개변수 parameter 함수 선언부의 매개인자가 담길 공간(변수)
+            매개인자 arguments 함수 호출부에서 전달될 값
+
+            매개변수와 매개인자의 개수가 달라도 문제가 되지 않는다
+        */
+        function test1(x) {
+            console.log("x = " + x);
+
+            // 매개인자배열(arguments)
+            console.log(arguments);
+            for (var i = 0; i < arguments.length; i++) {
+                console.log(arguments[i]);
+            }
+        }
+
+        function test2() {
+            add(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+            add(12.34, 55.66, "aa");
+        }
+    </script>
+
+    <h2>함수 특징</h2>
+    <input type="button" value="return value" onclick="test3();">
+    <input type="button" value="중첩 함수" onclick="test4(10,5);">
+
+    <script>
+        function test3() {
+            console.log(koo()); // undefined가 기본
+        }
+
+        function koo() {
+            return;
+        }
+
+        function test4(a, b) {
+            var a = 11;
+
+            // 제곱근구하기
+            // 중첩함수
+            var power = function (n) {
+                return n ** 2;
+            }
+
+            var c = Math.sqrt(power(a) + power(b));
+            console.log(c);
+
+        }
+    </script>
+
+    <h2>함수 고급</h2>
+    <input type="button" value="매개인자" onclick="test5();">
+    <input type="button" value="리턴값" onclick="test6();">
+    <input type="button" value="999" onclick="(soo())(999)">
+
+    <script>
+        /*
+            자바스크립트에서 함수는 값으로써 취급된다.
+            - 변수에 대입할 수 있다.
+            - 함수의 매개인자로 전달 될 수 있다
+            - 리턴값으로 사용될 수 있다
+        */
+
+        var names = ['java', 'db', 'jdbc', 'html', 'css', 'js'];
+
+        function test5() {
+            exec(function (index) {
+                console.log(index + ": hello , " + names[index - 1] + "!!");
+            });
+        }
+
+        function exec(callbackfn) {
+            // console.log(callbackfn , typeof callbackfn);
+            // callbackfn();
+            for (var i = 0; i < names.length; i++) {
+                callbackfn(i + 1);
+            }
+        }
+
+        function test6() {
+            // var f = makeFunction('hello');
+            // console.log(f , typeof f);
+            // f('js');
+            // (makeFunction()('js'));
+            var sayHello = makeFunction('say');
+            var sayGoodBye = makeFunction('good bye');
+
+            sayHello('js'); // say js
+            sayGoodBye('js'); // good bye js
+        }
+
+        function makeFunction(say) {
+            return function (name) {
+                console.log(say + ' ' + name + '~');
+            }
+        }
+
+        function soo() {
+            return function (n) {
+                console.log(n);
+            }
+        }
+    </script>
+
+    <h2>함수 스코프</h2>
+    <script>
+        // 1 IIFE
+        var z = 50;
+        (
+            function varTest() {
+                var z = 55;
+                z += 45;
+                console.log('varTest() z=' + z);
+            }()
+        )
+        console.log('z = ', z); // 50
+
+        // 2 IIFE
+        var y = 99; //전역
+        (function varTest2() {
+            var x = 100; // 지역
+            var y = 9; // 지역
+            z = 1; // 전역
+            console.log('varTest2() : x+y+z= ', (x + y + z));
+        })()
+
+        // console.log('x+y+z= ', (x + y + z)) // 에러 발생
+        console.log('z = ', z); // 1
+
+        // 3
+        // 전역에서 실행한 for문 내부변수 i
+        for (var i = 1; i <= 10; i++) {
+            console.log(i);
+        }
+
+        function getNum() {
+            console.log('getNum() : i ', i);
+        }
+
+        getNum(); // i = 11
+
+        // 4 중첩함수 형태에서 하위함수가 상위함수의 지역변수 를 참조하고 있는 경우
+        var num = 200;
+        function funX() {
+            var num = 100;
+            return function () {
+                console.log('num = ', num); // 100
+            }
+        }
+
+        var myf = funX();
+        var myNewF = function () {
+            console.log('num = ', num); //200
+        }
+
+        console.dir(myf); // function
+        console.dir(myNewF); // function
+
+        myf(); // 100
+        myNewF(); // 200
+    </script>
+
+    <h2>Closure</h2>
+    <input type="button" value="globalCounter" onclick="test7();">
+    <input type="button" value="closureCounter" onclick="test8();">
+
+    <script>
+        // 전역 변수
+        var cnt = 0;
+        function test7() {
+            console.log('globalCnt : ' + (++cnt));
+        }
+        /*
+            클로저(Closure) : 중첩함수에서 하위함수가 상위함수의 변수를 참조할때 발생하는 스코프
+                            하위 함수는 상위함수의 변수값을 미리 본인 scope에 클로저로 등록해두기 때문에
+                            상위 함수가 스택에서 제거된다고 하더라도 상위함수의 변수를 쓸수 있다.
+        */
+
+        console.log('---------------------');
+
+        function funcY() {
+            var num = 100;
+            function funcZ(){
+                console.log('num = ' , num)
+            }
+            return funcZ;
+        }
+
+        var myy = funcY();
+        myy();
+
+        var makeClosureCounter = function(){
+            var cnt = 0;
+            return function (){
+                console.log('closureCounter : ' + ++(cnt));
+            }
+        }
+
+        var test8 = makeClosureCounter();
+        // var test9 = makeClosureCounter(); // 클로저값을 따로 기록
+    </script>
+
+    <h4>실습문제</h4>
+    <button onclick="funcX()()">funcX실행확인</button>
+    <script>
+        /*
+            실행컨텍스트(Execution Context)
+            코드를 실행하기 위한 실행환경 정보를 담고 있는 객체.
+            (전역변수 , 전역함수 , 스코프관리 , this바인딩 , 실행순서유지)
+            실행컨텍스트는 js코드에 대한 "평가"과정을 통해 생성된후
+            Stack에 들어가면서 실행된다.
+        */
+        // debugger;
+        var a = 1;
+        var funcX = function(){
+            var a = 100;
+            var funcX = function(){
+                var a = 100;
+                return function(){
+                    console.log(a);
+                }
+            }
+        }
+
+        var b = 9;
+        var funcY = function(){
+            var b = 99;
+            return function(b){
+                console.log(b);
+            }
+        }
+
+        // funcY()(); // undefined. 매개변수 전달이 안되서?
+
+        var funcZ = function(k){
+            return function(num){
+                console.log(k * num);
+            }
+        }
+
+        // funcZ(3)(5); //
+        // funcZ()(5); // undefined * 5 = NaN
+
+    </script>
+
+</body>
+
+</html>

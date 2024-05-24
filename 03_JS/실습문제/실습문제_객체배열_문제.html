@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js - 실습문제 - 객체배열</title>
+</head>
+
+<body>
+  <h1>@실습문제 - 객체배열</h1>
+  <input type="button" value="실행" onclick="test1();">
+  <script>
+    /**
+     * Student생성자함수를 통해 점수데이터를 관리하세요.
+     * - java
+     * - oracle
+     * - html5
+     * - css3
+     * - javascript
+     * - getSum
+     * - getAvg : 반올림 소수점 첫째자리
+     * - toString
+     */
+    function test1() {
+      //1.객체배열 생성 및 요소추가
+      var students = [
+        new Student('김동현', 90, 56, 56, 44, 34),
+        new Student('유관순', 76, 23, 56, 44, 34),
+        new Student('임꺽정', 100, 56, 50, 32, 88)
+      ];
+
+      function Student(name, java, oracle, html5, css3, javascript){
+    this.name= name;
+    this.class = { java, oracle , html5, css3 , javascript }   // key(프로퍼티명) : value(변수명) key : key -> key 
+    this.javascript = javascript;
+  }
+
+  Student.prototype.getSum = function(){
+    var sum = 0;
+    var length = 0;
+    for(var subject in this.class){
+      sum += this.class[subject];
+      ++length;
+    }
+    this.length = length;
+    //return this.java + this.oracle + this.html5 + this.css3 + this.javascript;
+    return sum;
+  }
+
+  Student.prototype.getAvg = function(){
+    return Math.floor(this.getSum() / this.length * 10) / 10;
+  }
+
+  Student.prototype.toString = function(){
+    // debugger;
+    //이름=임꺽정, java=100, oracle=56, html5=50, css3=32, javascript=88, 총점=326, 평점=65.2
+    var result = "";
+    for(var key in this){
+      if(key === 'toString') continue;
+      if(typeof this[key] == 'object'){
+         for(var key2 in this[key]){
+          result += `${key2}=${this[key][key2]}`;
+         }
+      }
+      else if(typeof this[key] == 'function'){
+        result += `${key}=${this[key]()},`;
+      }else{
+        result += `${key}=${this[key]},`;
+      }
+    }
+    return result;
+    // return `이름=${this.name}, java=${this.class.java}, oracle=${this.oracle},
+    //  html5=${this.html5}, css3=${this.css3}, javascript=${this.javascript},
+    //  총점=${this.getSum()}, 평점=${this.getAvg()}`;
+  }
+
+
+      //2.반복문을 통해 객체배열 순회. 요소별 toString메소드 호출하기
+
+      for (var student of students) {
+        console.log(student.toString());
+      }
+
+      /* 
+        출력결과 : 
+        이름=김동현, java=90, oracle=56, html5=56, css3=44, javascript=34, 총점=280, 평점=56
+        이름=유관순, java=76, oracle=23, html5=56, css3=44, javascript=34, 총점=233, 평점=46.6
+        이름=임꺽정, java=100, oracle=56, html5=50, css3=32, javascript=88, 총점=326, 평점=65.2
+      */
+    }
+
+    /**
+     * Student 생성자 함수 선언 (class 방식, 생성자 함수방식 아무거나)
+     * 함수의 prototype에 getSum, getAvg, toString함수 추가
+     */
+
+    // class Student {
+    //   constructor(name, java, oracle, html5, css3, javascript) {
+    //     this.name = name;
+    //     this.java = java;
+    //     this.oracle = oracle;
+    //     this.html5 = html5;
+    //     this.css3 = css3;
+    //     this.javascript = javascript;
+    //   }
+
+    //   getSum() {
+    //     return this.java + this.oracle + this.html5 + this.css3 + this.javascript;
+    //   }
+
+    //   getAvg() {
+    //     return (this.getSum()) / 5;
+    //   }
+
+    //   toString() {
+    //     return `이름=${student.name}, java=${student.java}, oracle=${student.oracle}, html5=${student.html5}, css3=${student.css3}, javascript=${student.javascript}
+    //   , 총점=${student.getSum()}, 평점=${student.getAvg()}`;
+    //   }
+    // }
+
+  </script>
+
+</body>
+
+</html>

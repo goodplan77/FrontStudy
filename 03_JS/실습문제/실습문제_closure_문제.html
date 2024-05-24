@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>실습문제_closure</title>
+</head>
+
+<body>
+	<h3>@실습문제</h3>
+	<p>임의의 숫자를 더해가는 가산기를 만들어보자.
+		사용자는 input#myadder를 통해 값을 입력하고, <br>
+		가산기는 입력값만큼 증가시켜서 alert로 현재까지의 합을 알려주는 프로그램을 만드세요
+	</p>
+	가산기 : <input type="number" id="myadder">
+	<button onclick="addFunc();">실행</button>
+	<script>
+		// 전연변수 사용금지. 클로저를 활용할것.
+		function mkAddFunc() {
+			return document.querySelector('#myadder').value;
+		}
+
+		function addFunc() {
+			var sum = mkAddFunc(); // 살려줘
+			
+		}
+	</script>
+</body>
+
+</html>

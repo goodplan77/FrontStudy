@@ -406,7 +406,7 @@
 
             // 2)
             findOne = drink.find(function(value){
-                if(value.indexOf('ff') > 0) {
+                if(value.indexOf('ff') > -1) {
                     return true;
                 }
             });
@@ -414,7 +414,7 @@
 
             // 3)
             filteredArr = drink.filter(function(value){
-                if(value.indexOf('o') > 0) {
+                if(value.indexOf('o') > -1) {
                     return true;
                 }
             });

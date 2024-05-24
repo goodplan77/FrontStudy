@@ -59,14 +59,38 @@
 		}
 
 		function printProduct(){
-			var templist = document.querySelectorAll('ul>li');
-			var result = "";
+			// var templist = document.querySelectorAll('ul>li');
+			// var result = "";
+
+			// templist.forEach(function(value){
+			// 	var labeltext = value.querySelector('label').innerText;
+			// 	var input = value.querySelector('input , textarea').value;
+			// 	result += labeltext + " " + input + "\n";
+			// });
 			
-			for (var i of templist){
-				result += i.querySelector('label').innerText + " " +i.querySelector('input , textarea').value + "\n"
-			}
-			document.querySelector('#result').innerText = result;
-			confirm(result+'입력하신 내용이 맞습니까?');
+			// if(confirm(result + "입력하신 내용이 맞습니까?")){
+			// 	document.querySelector('#result').innerText = result;
+			// }
+
+			// 답안
+
+			var result = document.querySelector('#result');
+
+			var pname	= document.getElementById("productName").value;
+			var plevel	= document.getElementById("productAmount").value;
+			var amonut	= document.getElementById("productLevel").value;
+			var etc		= document.getElementById("message").value;
+
+			var txt = `상품명 : ${pname}\n납품등급 : ${plevel}\n납품수량 : ${amonut}\n기타사항 : ${etc}\n`;
+			
+			// var bool = confirm(txt + "입력하신 정보가 맞습니까?");
+
+			// if(bool){
+			// 	result.innerHTML = txt;
+			// }
+
+			(confirm(txt + "입력하신 정보가 맞습니까?")) && (result.innerText = txt);
+			
 		}
   </script>
 </body>

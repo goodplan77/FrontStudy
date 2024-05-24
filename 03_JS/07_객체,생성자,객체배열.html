@@ -259,8 +259,98 @@
             */
         }
 
-        class Pet2 extends Animal {
+        // 생성자 함수를 통한 객체 배열 생성
+        function test9() {
+            var pets = [
+                new Pet('고양이', '코코', '브숏', 4.5),
+                new Pet('강아지', '꽃분이', '말티즈', 4),
+                new Pet('강아지', '아랑', '비숑', 9),
+            ];
 
+            for (var pet of pets) {
+                console.log(`${pet.name}가 ${pet.bark()} 짖는다`);
+            }
+        }
+    </script>
+
+    <h2>자바 스크립트의 class</h2>
+    <input type="button" value="실행" onclick="test10();">
+
+    <script>
+        class Animal2 {
+            constructor(kind) {
+                this.kind = kind;
+            }
+        }
+
+        class Pet2 extends Animal2 {
+            _hobby;
+            #hobby; // # -> private를 의미.
+            constructor(kind, name, breed, weight) {
+                super(); // 부모 타입에 필드 전달시 자식객체 프로퍼티에 초기화
+                this.kind = kind;
+                this.name = name;
+                this.breed = breed;
+                this.weight = weight;
+            };
+
+            // 메서드 생성시 단축구문을 이용하면 부모 객체에 함수가 추가됨
+            static bark /*= function*/() {
+                return this.weight > 10 ? '멍멍' : '왈왈';
+            }
+
+            // 1) setter , getter 함수 만들기
+
+            getHobby() {
+                // if(this._hobby !== null && this._hobby !== undefined){
+                //     return this._hobby;
+                // }
+
+                // return null;
+
+                // return (this._hobby !== null && this._hobby !== undefined) ? this._hobby : null;
+                
+                // ??(nullish 병합 연산자)
+                // A ?? B -> A가 null이나 undefined가 아니라면 A반환 , 그 외 B반환
+                return this._hobby ?? null;
+            }
+
+            // _hobby가 없는 상태라면 객체를 만들고 , 존재한다면 전달받은 데이터 추가
+            setHobby(value) {
+                // if (this._hobby) {     
+                //     this._hobby.push(value);
+                // } else {
+                //     this._hobby = [];
+                // }
+
+                (this._hobby || (this._hobby = [])) && this._hobby.push(value);
+            }
+
+            // 2)
+            // 접근자 프로퍼티
+            get hobby(){
+                return this.#hobby ?? null;
+            }
+
+            set hobby(value){
+                (this.#hobby || (this.#hobby = [])) && this.#hobby.push(value);
+            }
+        }
+
+        function test10() {
+            console.dir(Animal2, Pet2);
+            var cat = new Pet2('고양이', '코코', '브숏', 3);
+            console.log(cat);
+
+            console.log(cat.getHobby());
+            cat.setHobby("눕기");
+            cat.setHobby("사냥놀이");
+            console.log(cat.getHobby());
+
+            cat.hobby = "눕기2"; // set
+            console.log(cat.hobby); // get
+
+            console.log(Pet2.bark());
         }
     </script>
 
