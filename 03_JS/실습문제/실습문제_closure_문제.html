@@ -19,13 +19,15 @@
 	<script>
 		// 전연변수 사용금지. 클로저를 활용할것.
 		function mkAddFunc() {
-			return document.querySelector('#myadder').value;
-		}
+			var sum = 0;
+			return function () {
+				var myadder = document.querySelector('#myadder').value * 1;
+				sum += myadder;
+				alert(sum);
+			}
 
-		function addFunc() {
-			var sum = mkAddFunc(); // 살려줘
-			
 		}
+		var addFunc = mkAddFunc();
 	</script>
 </body>
 

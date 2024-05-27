@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js - 실습문제 - 이벤트</title>
+  <style>
+    .btn-wrapper {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>@실습문제_이벤트</h1>
+  <!--  
+    #btn-generate을 클릭하면, 
+    아래데이터를 javascript객체로 먼저 만들고, 배열로 관리한다.
+    배열을 순회하면서, button태그를 동적으로 생성한다.
+    생성된 버튼태그를 클릭하면, 각각의 url로 페이지이동해야한다.
+
+    버튼 value       이동할 url
+    ---------------------------------
+    네이버            https://www.naver.com
+    구글              https://www.google.com
+    KH                https://www.iei.or.kr
+    와삼              https://www.w3schools.com
+
+  -->
+  <button type="button" id="btn-generate">버튼생성</button>
+  <div class="btn-wrapper">
+    <button type="button" data-url='https://www.naver.com'>네이버</button>&nbsp;
+    <button type="button" data-url='https://www.google.com'>구글</button>&nbsp;
+    <button type="button" data-url='https://www.iei.or.kr'>KH</button>&nbsp;
+    <button type="button" data-url='https://www.w3schools.com'>와삼</button>
+  </div>
+  <script>
+    document.querySelector('#btn-generate').onclick = function (e) {
+      var buttonclass = document.querySelector('.btn-wrapper');
+      var buttonlist = buttonclass.querySelectorAll('button');
+
+      for (var button of buttonlist) {
+        var buttonNode = document.createElement('button');
+        buttonNode.dataset.url = button.dataset.url;
+        buttonNode.innerText = button.innerText;
+        buttonclass.appendChild(buttonNode);
+      }
+
+    }
+
+    document.querySelector('.class>button').onclick = function (e) {
+      
+    }
+
+  </script>
+
+</body>
+
+</html>

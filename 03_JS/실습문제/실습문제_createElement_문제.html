@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input,
+        textarea {
+            width: 100%;
+            resize: none;
+            box-sizing: border-box;
+        }
+
+        dl {
+            border: 1px solid black;
+        }
+
+        ul,
+        li {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            border: 1px solid black;
+        }
+
+        h5 {
+            text-align: center;
+            color: maroon;
+        }
+
+        p {
+            text-align: justify;
+            border: 1px;
+            color: blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+
+    <fieldset>
+        <legend>게시글 생성</legend>
+        <div>
+            <header>
+                게시글 제목 : <input type="text" name="title">
+            </header>
+            <section>
+                게시글 내용 : <textarea name="content" cols="30" rows="10"></textarea>
+            </section>
+            <footer style="text-align: center;">
+                <input type="button" value="등록" onclick="insertBoard();">
+            </footer>
+        </div>
+    </fieldset>
+
+    <script>
+        /* 
+            등록버튼 클릭시 작성한 게시글 제목과 게시글 내용을 ul태그안에 
+            자식 안에 추가할것. 추가시 동적 node생성구문(createElement)를 활용할 것.
+
+            게시글 등록 조건
+            1) 게시글 제목과, 내용은 1글자 이상 작성해야 등록되도록 할것
+            2) 등록 완료후 작성한 내용을 비워줄것
+        */
+        function insertBoard() {
+            var elementNode = document.createElement("li");
+
+            var titleNode = document.createElement('h5');
+            var inputtitle = document.querySelector('input[name=title]');
+
+            if(inputtitle.value.length < 1){
+                alert("제목을 1글자 이상 입력하세요.");
+                return false;
+            }
+
+            titleNode.appendChild(document.createTextNode(inputtitle.value));
+
+
+            var contentNode = document.createElement('p');
+            var inputcontent = document.querySelector('textarea[name=content]');
+
+            if(inputcontent.value.length < 1){
+                alert("내용을 1글자 이상 입력하세요.");
+                return false;
+            }
+
+            contentNode.appendChild(document.createTextNode(inputcontent.value));
+
+            elementNode.appendChild(titleNode);
+            elementNode.appendChild(contentNode);
+
+            document.querySelector('#boardList').appendChild(elementNode);
+
+            inputtitle.value = "";
+            inputcontent.value = "";
+        }
+
+        /* 
+            게시글 검색기능. 게시글에 내가 입력한 내용이 포함된 게시글만 필터링 시켜서 보여주는 기능.
+            검색내용을 비워둔후 재검색 눌렀을때는 전체 게시글목록이 나와야함.
+        */
+        function searchTitle() {
+            var listall = document.querySelectorAll("#boardList>li");
+            var keyword = document.querySelector('input[name=search]').value;
+            
+            for(var temp of listall){
+                var searching = temp.querySelector('h5').innerText;
+
+                if(keyword == ""){
+                    temp.style.display = "block";
+                }
+
+                if(searching.indexOf(keyword) < 0){
+                    temp.style.display = "none";
+                }
+            }
+
+        }
+
+    </script>
+
+    <h1>게시글 목록</h1>
+    <div style="display: flex; margin: 15px;">
+        <input style="flex-basis: 90%;" type="search" name="search" placeholder="게시글제목을 입력하세요">
+        <input style="flex-basis: 10%;" type="button" value="찾기" onclick="searchTitle();">
+    </div>
+    <ul id="boardList">
+        <li>
+            <h5>1번 게시글</h5>
+            <p>게시글내용입니다.</p>
+        </li>
+    </ul>
+
+</body>
+
+</html>

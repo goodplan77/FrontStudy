@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .area {
+            background-color: lightgray;
+            border: 1px solid black;
+            height: 100px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 3px solid #000;
+            background: tomato;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .boxx {
+            border: 1px solid #000;
+            padding: 20px;
+        }
+
+        .box1 {
+            background-color: yellowgreen;
+        }
+
+        .box2 {
+            background-color: green;
+        }
+
+        .box3 {
+            background-color: springgreen;
+        }
+    </style>
+</head>
+
+<body data-text = "body" onclick="displayMsg(event , this)">
+    <h1>이벤트</h1>
+
+    <h2>Event Handler Binding</h2>
+    <input type="button" value="inline event" onclick="test1()" onmouseover="test1()">
+    <input type="button" value="event 속성 지정" id="btn2">
+    <input type="button" value="addEventListener" id="btn3">
+
+    <script>
+        function test1() {
+            console.log('click 이벤트 발생');
+        }
+
+        document.querySelector('#btn2').onclick = test1; // 함수 자체로 전달하기
+        // 1 대 1 추가
+        // document.querySelector('#btn1').onclick = function(){test1();};
+
+        document.querySelector("#btn3").addEventListener("click", function () {
+            console.log("#btn3 clicked");
+        })
+        // 1 대 다 추가
+    </script>
+
+    <h2>Event | Event Target</h2>
+    <div class="box" onclick="test2(event , this);"></div>
+    <script>
+        /*
+            Event 객체 : 발생한 이벤트관련 모든 정보를 가진 객체
+                        (이벤트가 발생한 요소 , 어떤 유형 , 위치정보)
+                        이벤트 발생시 js 에서 이벤트 핸들러 함수의 인자로 전달해준다.
+            Event target 객체 : 이벤트 발생 객체. event 객체의 target속성값
+        */
+
+        document.querySelector('.box').onmouseover = function (e) {
+            console.log(e);
+            console.log(e.target, this);
+
+            // e.target.innerHTML = "안녕";
+            this.innerHTML = "안녕";
+        }
+
+        document.querySelector('.box').onmouseout = function (e) {
+            // e.target.innerHTML = "잘가";
+            this.innerHTML = "잘가";
+        }
+
+        /*
+            inline 방식으로 핸들러를 호출하는 경우 이 함수는 일반함수.
+        */
+
+        function test2(e, element) {
+            console.log(e); // PointerEvent
+            console.log(this); // Window
+            console.log(element) // box
+        }
+    </script>
+
+    <h2>KeyEvent</h2>
+    <input type="text" id="userInput" placeholder="아무말이나치세요">
+    <div class="text-wrapper"></div>
+    <script>
+        /*
+            keydown - keypress - keyup(값입력)
+            눌렀을때 - 누르는중 - 떼었을때 ?
+        */
+        document.querySelector('#userInput').addEventListener('keyup', function (e) {
+            console.log(e);
+            document.querySelector(".text-wrapper").innerHTML = this.value;
+        })
+    </script>
+
+    <h2>Submit Event</h2>
+    <form>
+        <fieldset>
+            <legend>로그인</legend>
+            <table>
+                <tr>
+                    <th>
+                        <label for="userId">아이디</label>
+                    </th>
+                    <td>
+                        <input type="text" name="userId" id="userId">
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label for="pwd">비밀번호</label>
+                    </th>
+                    <td>
+                        <input type="password" name="pwd" id="pwd">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <input type="submit" value="로그인">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+
+    <script>
+        /*
+            사용자 입력값 유효성 검사
+        */
+        document.querySelector('form').onsubmit = function (e) {
+            console.log(e);
+
+            // 1. 아이디검사
+            if (userId.value.length < 4) {
+                alert('유효한 아이디를 입력하세요.');
+                userId.select();
+                // 기본 이벤트 방지 메서드
+                // 기본 이벤트는 각 태그마다 기본적으로 내장되어 있는 이벤트 함수
+                // form -> submit , a -> click
+
+                // e.preventDefault(); // 기본 이벤트 방지 메서드
+
+                return false;
+            }
+
+            // 2. 비밀번호
+            if (pwd.value.length < 4) {
+                alert('유효한 비밀번호를 입력하세요.');
+                pwd.focus();
+
+                // e.preventDefault();
+
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+    <h2>Event Propagation - Bubbling</h2>
+    <img src="./resources/images/이벤트 버블링.svg">
+    <!-- 
+        이벤트 버블링 ?
+        요소에 이벤트 핸들러가 작동하면 이어서 부모요소의 핸들러 , 그 부모의 부모 요소의.... 로 이벤트가
+        계속 전파되는 행위를 말함.
+     -->
+
+    <div class="boxx box1" data-text="box1" onclick="displayMsg(event, this);">
+        <div class="boxx box2" data-text="box2" onclick="displayMsg(event, this);">
+            <div class="boxx box3" data-text="box3" onclick="displayMsg(event, this);"></div>
+        </div>
+    </div>
+
+    <script>
+        function displayMsg(e , boxx) {
+            console.log(boxx.dataset.text);
+
+            e.stopPropagation(); // 상위 요소의 전파를 막음
+        }
+    </script>
+
+</body>
+
+</html>
