@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <!-- 1. 서버용 컴퓨터에 다운로드 받은 후 현재 페이지 추가 -->
+    <script src="resources/js/jquery-3.6.0.min.js"></script>
+    <!-- 2. CDN 인터넷상의 서버에서 다운로드 받는 방식 -->
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+</head>
+
+<body>
+    <!-- 
+        jQuery ?
+        - 자바스크립트 언어만으로 구현하기에 복잡하고 길었던 구문을 간소화 하기 위해 개발된
+          JavaScript기반의 라이브러리
+
+          장점?
+          1) DOM 요소와 관련된 스크립트를 쉽게 구현 할 수 있다.
+          2) 다양한 기능을 폭넓게 제공(ajax , 이벤트 처리 기능 등등...)
+          3) jQuery와 관련된 확장형 플러그인이나 오픈 API등을 다수 지원한다.
+             (차트 , 슬라이드 , 애니메이션 등등)
+
+          단점?
+          1) 순수 Javascript보다 성능이 느리다.
+          2) 두 언어를 혼용했을때 헷갈린다.
+     -->
+
+     <script>
+        //jquery load함수
+        $(document).ready(function(){
+            console.log("jquery를 load했습니다");
+        });
+        jQuery(document).ready(function(){
+            console.log("jquery를 load했습니다");
+        });
+        $(function(){
+            
+        });
+     </script>
+</body>
+
+</html>
