@@ -38,34 +38,60 @@
   </div>
   <script>
 
-    var buttonclass = document.querySelector('.btn-wrapper');
-    var buttonlist = buttonclass.querySelectorAll('button');
-
     document.querySelector('#btn-generate').onclick = function () {
+
+      var buttonclass = document.querySelector('.btn-wrapper');
+      var buttonlist = buttonclass.querySelectorAll('button');
+
       for (var button of buttonlist) {
         var buttonNode = document.createElement('button');
         buttonNode.type = 'button';
         buttonNode.dataset.url = button.dataset.url;
         buttonNode.innerText = button.innerText;
+
+        buttonNode.addEventListener('click', function (e) {
+          location.assign(e.target.dataset.url);
+        })
+
         buttonclass.appendChild(buttonNode);
       }
-
-      buttonlist = buttonclass.querySelectorAll('button');
-
-      for(var temp of buttonlist){
-        console.dir(temp);
-        temp.addEventListener('click', function (e) {
-          console.log(e);
-        location.assign(e.target.dataset.url);
-      })
-      }
     }
 
-    for (var temp1 of buttonlist) {
-      temp1.addEventListener('click', function (e) {
-        location.assign(e.target.dataset.url);
-      })
-    }
+    // for (var temp of buttonlist) {
+    //   temp.addEventListener('click', function (e) {
+    //     location.assign(e.target.dataset.url);
+    //   })
+    // }
+
+    // 답안
+
+    // function btnClickEl() {
+    //   var btns = [
+    //     new MyButton('네이버', 'https://www.naver.com'),
+    //     new MyButton('구글', 'https://www.google.com'),
+    //     new MyButton('KH', 'https://www.iei.or.kr'),
+    //     new MyButton('와삼', 'https://www.w3schools.com')
+    //   ];
+    //   var btnWrapper = document.querySelector('.btn-wrapper');
+    //   btns.forEach(function (btn, i) {
+    //     var html = `<button onclick='goTo("${btn.url}")'>${btn.name}</button>&nbsp`;
+    //     btnWrapper.innerHTML += html;
+    //   });
+    // }
+    // document.querySelector("#btn-generate").addEventListener("click", btnClickEl);
+    // // document.querySelector("#btn-generate").removeEventListener("click", btnClickEl);
+    // // document.querySelector("#btn-generate").onclick = null;
+
+    // function goTo(url) {
+    //   location.href = url;
+    // }
+
+    // class MyButton {
+    //   constructor(name, url) {
+    //     this.name = name;
+    //     this.url = url;
+    //   }
+    // }
 
   </script>
 

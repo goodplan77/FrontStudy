@@ -67,37 +67,101 @@
             1) 게시글 제목과, 내용은 1글자 이상 작성해야 등록되도록 할것
             2) 등록 완료후 작성한 내용을 비워줄것
         */
+
+        // react 방식
+        // 전역 - 객체 배열을 통해 데이터 관리
+        var boardList = [{
+            title: '1번 게시글',
+            content: '글내용'
+        }];
+
+        // 함수를 이용해 표현
+        function render() {
+            var ul = document.querySelector('#boardList');
+            for (var board of boardList) {
+                var li = document.createElement('li'); //<li></li>
+
+                var h5 = document.createElement('h5'); //<h5></h5>
+                h5.innerText = board.title;
+
+                var p = document.createElement('p'); //<p></p>
+                p.innerText = board.content;
+
+                li.append(h5, p);
+                ul.appendChild(li);
+            }
+        }
+
+        window.onload = function () {
+            // IIFE
+            (function () {
+                render();
+            })();
+        }
+
+
+
         function insertBoard() {
-            var elementNode = document.createElement("li");
+            // var elementNode = document.createElement("li");
 
-            var titleNode = document.createElement('h5');
-            var inputtitle = document.querySelector('input[name=title]');
+            // var titleNode = document.createElement('h5');
+            // var inputtitle = document.querySelector('input[name=title]');
 
-            if(inputtitle.value.length < 1){
-                alert("제목을 1글자 이상 입력하세요.");
-                return false;
+            // if(inputtitle.value.length < 1){
+            //     alert("제목을 1글자 이상 입력하세요.");
+            //     return false;
+            // }
+
+            // titleNode.appendChild(document.createTextNode(inputtitle.value));
+
+
+            // var contentNode = document.createElement('p');
+            // var inputcontent = document.querySelector('textarea[name=content]');
+
+            // if(inputcontent.value.length < 1){
+            //     alert("내용을 1글자 이상 입력하세요.");
+            //     return false;
+            // }
+
+            // contentNode.appendChild(document.createTextNode(inputcontent.value));
+
+            // elementNode.appendChild(titleNode);
+            // elementNode.appendChild(contentNode);
+
+            // document.querySelector('#boardList').appendChild(elementNode);
+
+            // inputtitle.value = "";
+            // inputcontent.value = "";
+
+            // 답안
+            var title = document.querySelector('[name=title]');
+            var content = document.querySelector('[name=content]');
+            // var boardList = document.querySelector('#boardList');
+
+            if (!title.value || !content.value) {
+                return;
             }
 
-            titleNode.appendChild(document.createTextNode(inputtitle.value));
-
-
-            var contentNode = document.createElement('p');
-            var inputcontent = document.querySelector('textarea[name=content]');
-
-            if(inputcontent.value.length < 1){
-                alert("내용을 1글자 이상 입력하세요.");
-                return false;
+            var board = {
+                title : title.value,
+                content : content.value
             }
 
-            contentNode.appendChild(document.createTextNode(inputcontent.value));
+            boardList.push(board);
+            render();
 
-            elementNode.appendChild(titleNode);
-            elementNode.appendChild(contentNode);
+            // var li = document.createElement('li'); //<li></li>
+            // var h5 = document.createElement('h5'); //<h5></h5>
+            // var p = document.createElement('p'); //<p></p>
 
-            document.querySelector('#boardList').appendChild(elementNode);
+            // h5.innerText = title.value;
+            // p.innerText = content.value;
 
-            inputtitle.value = "";
-            inputcontent.value = "";
+            // li.append(h5, p);
+            // boardList.appendChild(li);
+
+            title.value = "";
+            content.value = "";
         }
 
         /* 
@@ -107,16 +171,18 @@
         function searchTitle() {
             var listall = document.querySelectorAll("#boardList>li");
             var keyword = document.querySelector('input[name=search]').value;
-            
-            for(var temp of listall){
+
+            for (var temp of listall) {
                 var searching = temp.querySelector('h5').innerText;
 
-                if(keyword == ""){
+                if (keyword == "") {
                     temp.style.display = "block";
                 }
 
-                if(searching.indexOf(keyword) < 0){
+                if (searching.indexOf(keyword) < 0) {
                     temp.style.display = "none";
+                } else {
+                    temp.style.display = "block";
                 }
             }
 
@@ -130,10 +196,6 @@
         <input style="flex-basis: 10%;" type="button" value="찾기" onclick="searchTitle();">
     </div>
     <ul id="boardList">
-        <li>
-            <h5>1번 게시글</h5>
-            <p>게시글내용입니다.</p>
-        </li>
     </ul>
 
 </body>
