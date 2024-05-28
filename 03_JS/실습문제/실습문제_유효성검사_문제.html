@@ -148,8 +148,8 @@
         //첫글자는 반드시 영소문자로 이루어지고, 
         //숫자가 하나이상 포함되어야함.
         //아이디의 길이는 4~12글자사이
-        var regExp1;
-        var regExp2;
+        var regExp1 = /^[a-zA-Z].{3,11}$/;
+        var regExp2 = /^.*[0-9]{1,}.*$/;
         if(!regExpTest(regExp1
                       ,userId
                       ,"아이디는 영소문자로 시작하는 4~12글자입니다."))
@@ -166,9 +166,9 @@
         //영문자 반드시 포함 /[a-zA-Z]/
         //특수문자 반드시 포함  /[\*!&]/
 			
-		var regExpArr;
+    var regExpArr = (/^.{8,15}$/) && (/.*\d{1,}.*/) && (/.*[a-zA-Z]{1,}.*/) && (/.*[\\\*\!\&]{1,}.*/) ;
 
-        if(!regExpTest(regExp6, pwd, "비밀번호는 8~15자리 숫자/문자/특수문자를 포함해야합니다.")){
+        if(!regExpTest(regExpArr, pwd, "비밀번호는 8~15자리 숫자/문자/특수문자를 포함해야합니다.")){
                 return false;
         }
         
@@ -179,13 +179,13 @@
 
         //3.이름검사
         //한글2글자 이상만 허용. [가-힣] 으로 해도되긴 하지만 자음만(ㄱㄴㄷㄹ)있으면 필터링이 안됨
-        var regExp3;
+        var regExp3 = /^[ㄱ-ㅎㅏ-ㅣ가-힣]{2,}$/;
         if(!regExpTest(regExp3,userName,"한글2글자이상 입력하세요."))
             return false;
 
         //4.주민번호체크
-        var regExp4;
-        var regExp5;
+        var regExp4 = /^\d{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$/;
+        var regExp5 = /^[1234]\d{6}$/
         if(!regExpTest(regExp4,ssn1,"숫자만 입력하세요."))
             return false;
         if(!regExpTest(regExp5,ssn2,"숫자만 입력하세요."))
@@ -259,7 +259,7 @@
 
     function isEqualPwd(){
         var pwd = document.getElementById("pwd");
-        var pwdcheck = document.getElementById("pwdcheck");
+        var pwdcheck = document.getElementById("pwdCheck");
         if(pwd.value == pwdcheck.value){
             return true;
         }
