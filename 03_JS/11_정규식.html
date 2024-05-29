@@ -292,8 +292,8 @@
             area.innerHTML = s.replace(/ab*a/g, "<mark>$&</mark>"); // aa aba abba abbba
             area.innerHTML = s.replace(/ab{0,}a/g, "<mark>$&</mark>"); // aa aba abba abbba
 
-            area.innerHTML = s.replace(/ab+a/g, "<mark>$&</mark>"); // aba
-            area.innerHTML = s.replace(/ab{1,}a/g, "<mark>$&</mark>"); // aba
+            area.innerHTML = s.replace(/ab+a/g, "<mark>$&</mark>"); // aba abba abbba
+            area.innerHTML = s.replace(/ab{1,}a/g, "<mark>$&</mark>"); // aba abba abbba
 
             area.innerHTML = s.replace(/ab+a/g, "<mark>$&</mark>"); // aa aba
             area.innerHTML = s.replace(/ab{0,1}a/g, "<mark>$&</mark>"); // aa aba
