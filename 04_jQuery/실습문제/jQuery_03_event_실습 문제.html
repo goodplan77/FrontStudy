@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>jQuery_04_event_실습</title>
     <!--최신 jquery cdn 사용하기-->
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>  
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
+
 <body>
     <h2>Event 1</h2>
-    <script>
-        
-    </script>
-    
+
     <select name="number">
         <option value="">== 선택 == </option>
         <option value="1">1번</option>
@@ -25,40 +24,105 @@
 
     <hr>
 
-    <h2>Event 2</h2>
     <script>
-    
+        $('select[name=number]').on("change", function () {
+            $('#selNum').append($(this).children('option:selected').prop('innerText'));
+        });
     </script>
-    
+
+    <h2>Event 2</h2>
+
     <table id="event2" border="1">
-        <tr><th>번호</th><th>제목</th><th>조회수</th><th>작성일자</th></tr>
-        <tr><td>3</td><td>3번제목</td><td>0</td><td>11-07-13</td></tr>
-        <tr><td>2</td><td>2번제목</td><td>0</td><td>11-07-12</td></tr>
-        <tr><td>1</td><td>1번제목</td><td>0</td><td>11-07-11</td></tr>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>조회수</th>
+            <th>작성일자</th>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>3번제목</td>
+            <td>0</td>
+            <td>11-07-13</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>2번제목</td>
+            <td>0</td>
+            <td>11-07-12</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1번제목</td>
+            <td>0</td>
+            <td>11-07-11</td>
+        </tr>
     </table>
-        선택된 행 :
-        <span id="s1"></span> / 
-        <span id="s2"></span> / 
-        <span id="s3"></span> / 
-        <span id="s4"></span>
+    선택된 행 :
+    <span id="s1"></span> /
+    <span id="s2"></span> /
+    <span id="s3"></span> /
+    <span id="s4"></span>
 
     <hr>
-    
-    <h2>Event 3</h2>
+
     <script>
-    
+        $('#event2>tbody>tr').next().on("click", function () {
+            $('#s1').prop('innerText', $(this).children('td').eq(0).prop('innerText'));
+            $('#s2').prop('innerText', $(this).children('td').eq(1).prop('innerText'));
+            $('#s3').prop('innerText', $(this).children('td').eq(2).prop('innerText'));
+            $('#s4').prop('innerText', $(this).children('td').eq(3).prop('innerText'));
+        });
+        // 추가로 할것
+        // 1. 첫 선택자를 #s1으로 잡고 next를 활용해서 다음으로 이동 (안될수도 있음)
+        // 2. 마찬가지로 next 를 이용하거나 , 반복문을 활용해서 다음 값으로 이동
     </script>
 
+    <h2>Event 3</h2>
+
+
     <table id="event3" border="1">
-        <tr><th>번호</th><th>제목</th><th>조회수</th><th>작성일자</th></tr>
-        <tr><td>3</td><td>3번제목</td><td>0</td><td>11-07-13</td></tr>
-        <tr><td>2</td><td>2번제목</td><td>0</td><td>11-07-12</td></tr>
-        <tr><td>1</td><td>1번제목</td><td>0</td><td>11-07-11</td></tr>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>조회수</th>
+            <th>작성일자</th>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>3번제목</td>
+            <td>0</td>
+            <td>11-07-13</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>2번제목</td>
+            <td>0</td>
+            <td>11-07-12</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1번제목</td>
+            <td>0</td>
+            <td>11-07-11</td>
+        </tr>
     </table>
-        선택된 행 :
-        <span id="s5"></span> / 
-        <span id="s6"></span> / 
-        <span id="s7"></span> / 
-        <span id="s8"></span>
+    선택된 행 :
+    <span id="s5"></span> /
+    <span id="s6"></span> /
+    <span id="s7"></span> /
+    <span id="s8"></span>
+
+    <script>
+
+        $('#event3>tbody>tr').next().on("click", function () {
+            $(this).css('backgroundColor' , 'red');
+            $('#s5').prop('innerText', $(this).children('td').eq(0).prop('innerText'));
+            $('#s6').prop('innerText', $(this).children('td').eq(1).prop('innerText'));
+            $('#s7').prop('innerText', $(this).children('td').eq(2).prop('innerText'));
+            $('#s8').prop('innerText', $(this).children('td').eq(3).prop('innerText'));
+        });
+    </script>
 </body>
+
 </html>

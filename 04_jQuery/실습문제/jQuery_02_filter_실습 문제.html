@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>jQuery_02_filter_실습</title>
-    <script type="text/javascript" src="js/jquery-3.6.0.js"></script> 
+    <script type="text/javascript" src="../resources/js/jquery-3.6.0.min.js"></script>
 </head>
+
 <body>
     <h2>Filter1</h2>
-    
+
     <script>
-        function checkBtn(){
-         
+        function checkBtn() {
+            $('input[name=check]').filter(function (index, p) {
+                (p.checked) && (console.log(p.value));
+            });
         }
     </script>
-        
-    <input type="checkbox" name="check" value="1" /> 1번  
+
+    <input type="checkbox" name="check" value="1" /> 1번
     <input type="checkbox" name="check" value="2" /> 2번
     <input type="checkbox" name="check" value="3" /> 3번
     <input type="checkbox" name="check" value="4" /> 4번
@@ -27,10 +31,13 @@
 
     <h2>Filter2</h2>
     <script>
-        function selectBtn(){
+        function selectBtn() {
+            console.log($('select>option').filter(function (index, p) {
+                return (p.selected);
+            }).prop('value'));
         }
     </script>
-        
+
     <select>
         <option value="1" selected="selected">1번</option>
         <option value="2">2번 </option>
@@ -38,6 +45,7 @@
     </select>
     <br />
     <input type="button" value="Select 버튼 확인" onclick="selectBtn()" />
-        
+
 </body>
+
 </html>
