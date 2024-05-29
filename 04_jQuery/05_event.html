@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <style>
+        .outer {
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            padding: 50px;
+            margin: 20px auto;
+        }
+
+        .inner {
+            width: 100%;
+            height: 100%;
+            background-color: red;
+        }
+
+        .border {
+            border: 3px solid #000;
+        }
+
+        .box {
+            width: 300px;
+            height: 300px;
+            background-color: teal;
+            color: white;
+            text-align: center;
+            line-height: 300px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Event</h1>
+    <h2>mouseover & mouseout | mouseenter & mouseleave | hover</h2>
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+    <script>
+        /*
+            자식요소에 접근시에도 이벤트 발생
+            자식요소에서 현재요소로 재진입시에도 이벤트 발생
+        */
+        // $(".outer").mouseover(function () {
+        //     console.log('mouseover');
+        // })
+        //     .mouseout(function () {
+        //         console.log('mouseout');
+        //     })
+
+        /*
+            자식요소로 접근시에는 이벤트가 발생하지 않음
+        */
+        // $(".outer").mouseenter(function (e) {
+        //     console.log(e.target.className, 'mouseenter');
+        // })
+        //     .mouseleave(function (e) {
+        //         console.log(e.target.className, 'mouseleave');
+        //     })
+
+        $(".outer").hover(function () {
+            console.log('hover : mouseenter')
+            $(this).addClass('border');
+        }, function () {
+            console.log('hover : mouseleave')
+            $(this).removeClass('border');
+        });
+    </script>
+
+    <h2>key Event</h2>
+    <form action="javascript:alert('폼 제출 성공');" id="memoFrm">
+        <fieldset>
+            <legend>메모</legend>
+            <p><span id="counter">0</span>/30</p>
+            <textarea name="memo" id="memo" cols="30" rows="10" maxlength="30"></textarea>
+            <input type="submit" value="제출">
+        </fieldset>
+    </form>
+    <script>
+        var max = 30;
+        $("#memoFrm").submit(function (e) {
+            var value = $("#memo").val();
+            if (value.legnth > max) {
+                return false;
+            }
+        });
+
+        $("#memo").keyup(function () {
+            var $textarea = $(this);
+            var value = $textarea.val();
+            var len = value.length;
+
+            var $counter = $("#counter");
+            $counter.text(len);
+
+            if (len > max) {
+                $counter.css('color', 'red');
+            } else {
+                $counter.css('color', '#000');
+            }
+        })
+    </script>
+
+    <h2>on | off</h2>
+    <div class="box"></div>
+    <input type="button" value="off" onclick="$('.box').off('click')">
+
+    <script>
+        // $('.box')
+        // .on('click',function(){
+        //     $(this).html('<h1>하이</h1>');
+        // })
+        // .on('mouseleave', function(e){
+        //     $(this).html("");
+        // });
+
+        $('.box')
+            .click(function () {
+                $(this).html('<h1>하이</h1>');
+            })
+            .click(function () {
+                $(this).css('border', '1px solid black')
+            })
+            .on('mouseleave', function (e) {
+                $(this).html("").css('border', '2px solid red');
+            });
+    </script>
+
+    <h2>bubbling을 통한 event handling</h2>
+    <div class="wrap">
+        <h2><span>안녕</span></h2>
+    </div>
+
+    <script>
+        /*
+            자식요소에서 발생한 이벤트를 부모요소에서 핸들링
+            기존 요소 / 새로추가된 요소 모두 작동한다.
+
+            on(event , '선택자' , handler)
+        */
+
+        $(".wrap"/*document*/).on('click', "span", function (e) {
+            console.log(this); //span 요소
+            $(".wrap").append("<h2><span>안녕</span></h2>");
+        });
+    </script>
+
+    <h2>trigger</h2>
+    <div class="trg">
+        <h1>0</h1>
+    </div>
+    <input type="button" value="카운터 증가" onclick="test1();">
+    <script>
+        function test1() {
+            $('.trg').trigger('click');
+            // $('.trg').click();
+            // $('.trg').select();
+        }
+        
+        (function () {
+            var cnt = 0;
+            $(".trg").on('click', function (e) {
+                $(this).children("h1").text(++cnt);
+            })
+        })();
+    </script>
+
+</body>
+
+</html>

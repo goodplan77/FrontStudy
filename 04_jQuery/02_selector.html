@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>selector</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+</head>
+
+<body>
+    <h1>Selector</h1>
+    <!-- ul>li.foo#bar${안녕$}*5 -->
+    <ul>
+        <li class="foo" id="bar1">안녕1</li>
+        <li class="foo" id="bar2">안녕2</li>
+        <li class="foo" id="bar3">안녕3</li>
+        <li class="foo" id="bar4">안녕4</li>
+        <li class="foo" id="bar5">안녕5</li>
+    </ul>
+    <input type="button" value="tag" onclick="test1()">
+    <script>
+        function test1() {
+            // querySelectorAll
+            var $lis = $("ul>li");
+            console.log($lis); // jq객체
+            // console.log($); // jq객체
+            $lis.css("color", 'springgreen');
+
+            // var foo = document.querySelectorAll('.foo');
+            // foo.forEach(function(item){
+            //     item.style.fontSize = '2em';
+            // });
+            $('.foo').css("font-size", '2em');
+
+            var $bar1 = $('#bar1');
+            var $bar1_;
+
+            console.log($bar1);
+            console.log($bar1_ = $bar1.css('text-decoration', 'underline'));
+            console.log($bar1_ === $bar1);
+
+            $("#bar2").css('font-size', '3em')
+                .css('background-color', 'deeppink')
+                .css('color', '#fff');
+        }
+    </script>
+
+    <hr>
+
+    <fieldset>
+        <legend>메뉴</legend>
+        <input type="checkbox" name="menu" id="menu1" value="햄버거"><label for="menu1">햄버거</label>
+        <input type="checkbox" name="menu" id="menu2" value="피자"><label for="menu2">피자</label>
+        <input type="checkbox" name="menu" id="menu3" value="핫도그"><label for="menu3">핫도그</label>
+        <input type="checkbox" id="menuAll"><label for="menuAll">전체선택/해체</label>
+
+        <input type="button" value="get | set" id="checkGetSet">
+        <input type="button" value="확인" id="checkValue">
+    </fieldset>
+    <script>
+        $('#checkGetSet').click(function () {
+            // $("[name=menu]").each(function (index, elem) {
+            //     console.log(index, elem); // elem 순수 js element
+            //     // elem.css('color' , 'red') // jq 객체가 아니기때문에 메서드 사용 불가
+            //     var $elem = $(elem);
+            //     if($elem.prop("checked")){
+            //         console.log($elem.val());
+            //     }
+            // })
+
+            $("input[name=menu]:checked").each(function (index, elem) {
+                console.log(elem.value);
+                console.log($(elem).val());
+            })
+        })
+
+        /*
+            jquery에서의 get / set
+            항상 복수개의 요소를 가진 jquery객체 생성
+
+            - getter : 첫번째 인자의 속성값에 적용
+            - setter : 모든 인자의 속성값에 적용
+        */
+        $("#checkGetSet").click(function () {
+            console.log($("[name=menu]").prop("checked")); // getter
+            console.log($("[name=menu]").prop("checked", true)) // setter
+        });
+
+        $("#menuAll").change(function (e) {
+            $("[name=menu]").prop('checked', this.checked);
+        });
+
+        $("[name=menu]").change(function (e) {
+            console.log(e);
+            console.log(e.target);
+            console.log(this);
+
+            // $(e.target).prop("checked",true)
+            // $(this).prop("checked",true);
+            console.log($(this).attr("checked", true));
+            // console.log($(this).attr("checked"));
+        })
+    </script>
+
+    <img src="../01_HTML/resources/image/flower.jpg" style="margin: 50px 20px; width: 300px;">
+    <script>
+        /*
+            attr
+            html 태그의 속성을 가져오거나 수정할때 사용하는 함수
+        */
+        $('img').click(function () {
+            console.log($(this).attr('src'));
+            $(this).attr("src", '../01_HTML/resources/image/flower2.jpg')
+        })
+    </script>
+
+    <div class="wrapper">
+        <p>안녕1</p>
+        <p>안녕2</p>
+        <p>안녕3</p>
+        <p>안녕4</p>
+        <p>안녕5</p>
+        <p>안녕6</p>
+        <p><a href="#">안녕7</a></p>
+        <p>안녕8</p>
+        <p>안녕9</p>
+        <p>안녕10</p>
+    </div>
+    <input type="button" value=":eq()" onclick="test2();">
+    <input type="button" value=":gt() :lt()" onclick="test3();">
+    <input type="button" value=":contains()" onclick="test4();">
+    <input type="button" value=":has()" onclick="test5();">
+    <input type="button" value=":not()" onclick="test6();">
+
+    <script>
+        /*
+            :eq(index)
+        */
+        function test2() {
+            $(".wrapper p:eq(3)").css('font-size', '2em')
+                .css('color', 'deeppink');
+            // jQuery 만의 문법
+        }
+
+        /*
+            :gt(index)
+            :lt(index)
+        */
+        function test3() {
+            $(".wrapper p:gt(3)").css({ 'font-size': '2em', 'color': 'deeppink' });
+            $(".wrapper p:lt(3)").css({ 'font-size': '2em', 'color': 'green' });
+        }
+
+        /*
+            :contains('문자열')
+            특정 문자열 (innerText)을 가진 태그 조회
+        */
+        function test4() {
+            $(".wrapper p:contains('안녕8')")
+                .css('text-decoration', 'line-through')
+        }
+
+        /*
+            :has(selector)
+        */
+        function test5() {
+            $(".wrapper p:has('a')")
+                .css('background-color', 'lightgray');
+        }
+
+        /*
+            :not(selector)
+        */
+        function test6() {
+            $(".wrapper p:not(':first-child')")
+                .css('color', 'green')
+        }
+    </script>
+
+</body>
+
+</html>

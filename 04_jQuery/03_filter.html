@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>filter</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+</head>
+
+<body>
+    <h1>Filter</h1>
+    <input type="button" value="filter" onclick="test1();">
+    <input type="button" value="first|last|eq|not" onclick="test2();">
+    <div class="wrapper">
+        <p class="test">안녕11</p>
+        <p class="test">안녕22</p>
+        <p class="test">안녕33</p>
+        <p class="test">안녕44</p>
+        <p class="test">안녕55</p>
+        <p class="test">안녕63</p>
+        <p class="test">안녕77</p>
+        <p>안녕8</p>
+        <p>안녕9</p>
+        <p>안녕10</p>
+    </div>
+
+    <script>
+        function test1() {
+            // filter(selector)
+            // 현재 선택된 jquery 객체의 요소들 중에서 selector에 부합되는 요소만 추려서
+            // 다시 jquery 객체로 반환
+            var $p = $('.wrapper > p');
+            console.log($p);
+            // console.log($p.filter('.test'));
+
+            // $p.filter(':even'); // 짝수 인덱스 요소만 반환 0 2 4 6
+            // $p.filter(':odd').css('color','deeppink'); // 홀수 인덱스 요소만 반환 1 3 5 7
+
+            // $p.filter(function (index , p){
+            //     // console.log(index , p , index % 2 == 0);
+            //     return index % 2 == 0;
+            // }).css('color','deeppink');
+
+            // p 태그의 textContent중 숫자만 추려서 가져온 후,
+            // 짝수라면 글자색 deeppink로 바꾸기
+
+            $p.filter(function (index, p) {
+                // console.log(index , p , index % 2 == 0);
+                console.log($(p).prop('innerText'), $(p).text())
+
+                // var text = $(p).text();
+                // var num = text.match(/\d{1,}/g);
+                // num = num[0];
+
+                var num = $(p).text().replace(/[^\d]/g, "");
+
+                return num % 2 == 0;
+            }).css('color', 'deeppink');
+        }
+
+        function test2() {
+            var $p = $('.wrapper p');
+            console.log($p.first()); // jquery 객체 반환
+            console.log($p[0]); // p태그 객체 (js 객체) 반환
+
+            // first
+            // $p.first()
+            // .css('font-size','2em');
+
+            // last
+            // $p.last()
+            // .css('font-size','2em');
+
+            // eq
+            // $p.eq(5)
+            // .css('font-size','2em');
+
+            // not
+            // $p.not('.test')
+            // .css('font-size','2em');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>traversing</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <style>
+        .wrap * {
+            border: 1px solid lightgray;
+            display: block;
+            padding: 5px;
+            margin: 15px;
+            color: gray;
+        }
+
+        .type {
+            width: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Traversing</h1>
+
+    <div class="wrap">
+
+        <div class="type">div.type (great-grandparent)
+            <ul>ul (grandparent)
+                <li>li (direct parent)
+                    <span>span1</span>
+                </li>
+                <li>li (direct parent)
+                    <span>span2</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="type">div.type (grandparent)
+            <p>p (direct parent)
+                <span>span3</span>
+            </p>
+        </div>
+
+        <div class="type test">
+            div.test
+            <ul>
+                ul1
+                <li>li1-1</li>
+                <li>
+                    li1-2
+                    <ul>
+                        ul2
+                        <li>li2-1</li>
+                        <li>li2-2</li>
+                        <li>
+                            li2-3
+                            <ul>
+                                ul3
+                                <li>
+                                    li3
+                                    <span id="fromMe">fromMe</span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>조상</h2>
+    <input type="button" value="parent" onclick="test1();">
+    <input type="button" value="parents" onclick="test2();">
+    <input type="button" value="parentsUntil" onclick="test3();">
+
+    <script>
+        var red = {
+            color: 'red',
+            border: '2px solid red'
+        }
+
+        function test1() {
+            // parent([selector]) 직계 부모 요소
+            $("span")
+                .parent()
+                .parent('div')
+                .css(red);
+        }
+
+        function test2() {
+            // parents([selector]) 모든 조상 요소
+            $("span")
+                //.parents()
+                .parents('ul')
+                .css(red);
+        }
+
+        function test3() {
+            // parentsUntil(selector)
+            // 특정 조상 요소 "전까지"의 모든 조상 요소
+            $("span")
+                .parentsUntil('div')
+                .css(red);
+        }
+    </script>
+
+    <h2>자식</h2>
+    <input type="button" value="children" onclick="test4()">
+    <input type="button" value="find" onclick="test5()">
+    <input type="button" value="li2-2" onclick="test6()">
+
+    <script>
+        function test4() {
+            // children([selector]) : 직계자식요소
+            var $wrap = $('div.wrap');
+
+            $wrap
+                .children()
+                .children('ul')
+                .css(red);
+        }
+
+        function test5() {
+            // find(selector) : 모든 후손 요소들 중에서 selector 와 일치하는 요소
+            var $wrap = $('div.wrap');
+            $wrap
+                .find('span')
+                .css(red);
+        }
+
+        // 1. div.wrap 에서 li2-2 선택
+        // 2. #fromMe 에서 li2-2 선택
+
+        function test6() {
+            // 1. div.wrap 에서 li2-2 선택
+            // var $test1 = $('div.wrap');
+            // $test1
+            //     .find('ul>li>ul>li:eq(1)')
+            //     .css(red);
+
+            // 2. #fromMe 에서 li2-2 선택
+            // var $test2 = $('#fromMe');
+            // $test2
+            //     .parents('li')
+            //     .find(":contains('ul2')")
+            //     // .find(':eq(1)')
+            //     .css(red);
+
+            // var $wrap = $("div.wrap");
+            //     $wrap.find('ul').eq(2).children().eq(1)
+            //     .css(red);
+
+            // var $elem = $("span#fromMe")
+            //             .parent()
+            //             .parent()
+            //             .parent()
+            //             .parent()
+            //             .children("li:eq(1)")
+            //             .css(red);
+
+            var $elem = $("span#fromMe")
+                .parentsUntil('li:contains("li1-2")')
+                .children("li:contains('li2-2')")
+                .css(red);
+        }
+    </script>
+
+    <h2>형제</h2>
+    <input type="button" onclick="test7();" value="siblings">
+    <input type="button" onclick="test8();" value="next | nextAll | nextUntil">
+    <input type="button" onclick="test9();" value="prev | prevAll | prevUntil">
+
+    <div class="wrap">
+        <p>p</p>
+        <span>span</span>
+        <h1>h1</h1>
+        <h2 id="start">h2</h2>
+        <h3>h3</h3>
+        <h4>h4</h4>
+        <p>p</p>
+    </div>
+
+    <script>
+        function test7(){
+            // siblings([selector])
+            var $elem = $('#start').siblings('p').css(red);
+            console.log($elem);
+        }
+
+        function test8(){
+            // var $elem = $('#start').next();
+            // var $elem = $('#start').nextAll();
+            var $elem = $('#start').nextUntil('p');
+
+            $elem.css(red);
+        }
+
+        function test9(){
+            // var $elem = $('#start').prev();
+            // var $elem = $('#start').prevAll();
+            var $elem = $('#start').prevUntil('p');
+
+            $elem.css(red);
+        }
+    </script>
+</body>
+
+</html>
