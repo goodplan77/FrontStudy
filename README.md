@@ -1,6 +1,7 @@
 # FrontStudy
 5/13 ~ 5/30 Front-end 수업용 repositories 입니다.
 
+
 <details>
 <summary>01. HTML </summary>
 
@@ -14,6 +15,7 @@
 - 하이퍼링크 태그
 - 실습문제
 </details>
+
 
 <details>
 <summary>02. CSS </summary>
@@ -38,6 +40,7 @@
  - 실습문제 : (웹페이지 만들기)
 </details>
 
+
 <details>
 <summary>03. JavaScript </summary>
 
@@ -54,8 +57,21 @@
  - 정규식
 </details>
 
+
 <details>
 <summary>04. jQuery </summary>
 
  - 기본 개요
+ - selector
+ - filter
+ - traversing
+ - event
+ - DOM control
+ - API
+ - CSS control
+</details>
+
+
+<details>
+<summary>05. 시험평가용 자료 </summary>
 </details>
