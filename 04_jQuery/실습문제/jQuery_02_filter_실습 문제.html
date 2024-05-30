@@ -14,9 +14,15 @@
 
     <script>
         function checkBtn() {
-            $('input[name=check]').filter(function (index, p) {
-                (p.checked) && (console.log(p.value));
-            });
+            // $('input[name=check]').filter(function (index, p) {
+            //     (p.checked) && (console.log(p.value));
+            // });
+
+            var $check = $('input').filter(":checked");
+            //console.log($check);
+            $check.each(function (i,e){
+                console.log($(e).val());
+            })
         }
     </script>
 
@@ -32,9 +38,10 @@
     <h2>Filter2</h2>
     <script>
         function selectBtn() {
-            console.log($('select>option').filter(function (index, p) {
-                return (p.selected);
-            }).prop('value'));
+            // console.log($('select>option').filter(function (index, p) {
+            //     return (p.selected);
+            // }).prop('value'));
+            console.log($('option').filter(':selected').text());
         }
     </script>
 

@@ -12,6 +12,16 @@
 
 <body>
     <h2>Event 1</h2>
+    <script>
+        // $('select[name=number]').on("change", function () {
+        //     $('#selNum').append($(this).children('option:selected').prop('innerText'));
+        // });
+        $(function () {
+            $("[name=number]").change(function () {
+                $('#selNum').text($("option:selected").text());
+            });
+        });
+    </script>
 
     <select name="number">
         <option value="">== 선택 == </option>
@@ -23,12 +33,6 @@
     <span id="selNum"></span>
 
     <hr>
-
-    <script>
-        $('select[name=number]').on("change", function () {
-            $('#selNum').append($(this).children('option:selected').prop('innerText'));
-        });
-    </script>
 
     <h2>Event 2</h2>
 
@@ -64,22 +68,32 @@
     <span id="s3"></span> /
     <span id="s4"></span>
 
-    <hr>
-
     <script>
-        $('#event2>tbody>tr').next().on("click", function () {
-            $('#s1').prop('innerText', $(this).children('td').eq(0).prop('innerText'));
-            $('#s2').prop('innerText', $(this).children('td').eq(1).prop('innerText'));
-            $('#s3').prop('innerText', $(this).children('td').eq(2).prop('innerText'));
-            $('#s4').prop('innerText', $(this).children('td').eq(3).prop('innerText'));
+        $(function () {
+            $('#event2>tbody>tr').next().on("click", function () {
+                for (var i = 0; i <= 3; i++) {
+                    $(`#s${i + 1}`).prop('innerText', $(this).children('td').eq(i).prop('innerText'));
+                }
+            });
         });
-        // 추가로 할것
-        // 1. 첫 선택자를 #s1으로 잡고 next를 활용해서 다음으로 이동 (안될수도 있음)
-        // 2. 마찬가지로 next 를 이용하거나 , 반복문을 활용해서 다음 값으로 이동
+
+        // $(function () {
+        //     $('#event2 tr:eq(0)').nextAll().on("click" , function(e){
+        //         var $selectedArr = $(this).children().map(function(i,e){
+        //             return $(e).text();
+        //         });
+
+        //         $.each($selectedArr , function(index , element) {
+        //             $("span#s"+(index+1)).text(element);
+        //         })
+        //     })
+        // });
+
     </script>
 
-    <h2>Event 3</h2>
+    <hr>
 
+    <h2>Event 3</h2>
 
     <table id="event3" border="1">
         <tr>
@@ -114,15 +128,37 @@
     <span id="s8"></span>
 
     <script>
+        // $('#event3>tbody>tr').next().on("click", function () {
+        //     $(this).css('backgroundColor' , 'red');
+        //     $('#s5').prop('innerText', $(this).children('td').eq(0).prop('innerText'));
+        //     $('#s6').prop('innerText', $(this).children('td').eq(1).prop('innerText'));
+        //     $('#s7').prop('innerText', $(this).children('td').eq(2).prop('innerText'));
+        //     $('#s8').prop('innerText', $(this).children('td').eq(3).prop('innerText'));
+        // });
 
-        $('#event3>tbody>tr').next().on("click", function () {
-            $(this).css('backgroundColor' , 'red');
-            $('#s5').prop('innerText', $(this).children('td').eq(0).prop('innerText'));
-            $('#s6').prop('innerText', $(this).children('td').eq(1).prop('innerText'));
-            $('#s7').prop('innerText', $(this).children('td').eq(2).prop('innerText'));
-            $('#s8').prop('innerText', $(this).children('td').eq(3).prop('innerText'));
+        $(function () {
+            $("#event3").on("click","tr",function(e){
+                var $this = $(this);
+                if($this.is("table#event3 tr:eq(0)")) return;
+                // == 사용 불가. $ 사용시 새로운 jq 객체 생성 하기 때문
+
+                $this.children().each(function(index , item) {
+                    $("span#s"+(index+5)).html(item.innerHTML);
+                })
+
+                // css 처리 1
+                $("#event3 tr")
+                    .css('backgroundColor','white')
+                    .filter($(this))
+                    .css('backgroundColor','red');
+
+                // css 처리 2
+                // $("#event3 tr").css('backgroundColor','white');
+                // $this.css('backgroundColor','red');
+            })
         });
     </script>
+
 </body>
 
 </html>

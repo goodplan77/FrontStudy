@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+    <script src="https://code.jquery.com/color/jquery.color-2.2.0.js"
+        integrity="sha256-gvMJWDHjgDrVSiN6eBI9h7dRfQmsTTsGU/eTT8vpzNg=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1>CSS</h1>
+    <h2>display</h2>
+    <input type="button" value="show()" onclick="test1();">
+    <input type="button" value="hide()" onclick="test2();">
+    <input type="button" value="toggle()" onclick="test3();">
+
+    <br><br>
+    <img src="../01_HTML/resources/image/coffee.png" style="display:none" , id="img-coffee">
+    <hr>
+
+    <script>
+        function test1() {
+            $('#img-coffee').show(0, function () {
+                $(this).css('border', '3px solid gray');
+            });
+        }
+
+        function test2() {
+            $('#img-coffee').hide(400, function () {
+                console.log('hide끝');
+            });
+        }
+
+        function test3() {
+            $('#img-coffee').toggle(1000, 'linear', function () {
+                console.log('toggle끝');
+            })
+        }
+    </script>
+
+    <h2>fade</h2>
+    <input type="button" value="fadeIn" onclick="test4();">
+    <input type="button" value="fadeOut" onclick="test5();">
+    <input type="button" value="fadeToggle" onclick="test6();">
+    <br><br>
+    <img src="../01_HTML/resources/image/bono.jpg" id="bono">
+    <hr>
+    <div class="wrapper">
+        <img src="../01_HTML/resources/image/peng.jpg" id="peng">
+    </div>
+    <style>
+        .wrapper {
+            width: 500px;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .wrapper img {
+            width: 100%;
+            transition-duration: .5s;
+            opacity: .1;
+        }
+    </style>
+    <script>
+        function test4() {
+            $('#bono').fadeIn(100);
+        }
+
+        function test5() {
+            $('#bono').fadeOut(100);
+        }
+
+        function test6() {
+            $('#bono').fadeToggle(100);
+        }
+
+        $('#peng').hover(function () {
+            $(this)
+                .fadeTo(1000, 1) // 시간(mills) , 투명도 (0~1)
+                .css("transform", 'scale(1.1,1.1)'); // x 비율 , y 비율
+        }, function () {
+            $(this)
+                .fadeTo(1000, 0.4)
+                .css("transform", 'scale(1,1)');
+        })
+    </script>
+
+
+    <h2>animate</h2>
+    <input type="button" value="실행" onclick="test7();">
+
+    <div class="img-container">
+        <img src="../01_HTML/resources/image/flower5.jpg" alt="">
+    </div>
+
+    <div class="box" id="box1"></div>
+    <style>
+        .img-container {
+            width: 155px;
+            height: 105px;
+            margin: 0 auto;
+            overflow: hidden;
+            border: 2px solid gray;
+            padding-left: 5px;
+            padding-top: 5px;
+        }
+
+        .img-container img {
+            width: 150px;
+            height: 100px;
+            position: relative;
+        }
+
+        .box {
+            background-color: deeppink;
+            width: 10px;
+            height: 10px;
+            border: 0px solid #000;
+        }
+    </style>
+
+    <script>
+        $('.img-container img').click(function() {
+            $(this).animate({
+                left : '-158px',
+            } , 600 , 'swing' , function(){
+                $(this)
+                    .css('left' , "155px")
+                    .delay(1000)
+                    .animate({
+                        left : '0px'
+                    } , 600 , 'swing')
+            });
+        });
+
+        // animate(cssProps , duration , easing , callback)
+        // 적용할 속성 , 지속 시간 , easing , 콜백함수
+        function test7(){
+            $("#box1").animate({
+                width: "500px",
+                height : "500px",
+                backgroundColor : "#00bfff",
+                borderWidth : "30px",
+                borderColor : "red"
+            } , 3000 , "easeOutBounce" , function() {
+                console.log('animate완료');
+            });
+        }
+    </script>
+</body>
+
+</html>

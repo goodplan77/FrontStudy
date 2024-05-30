@@ -75,42 +75,63 @@
             $("table *").removeAttr('style');
         }
         function click1() {
-            $("table>tbody>tr").eq(1)
-                .children('td')
-                .next()
-                .css('color', 'yellow');
+            clear();
+            // $("table>tbody>tr").eq(1)
+            //     .children('td')
+            //     .next()
+            //     .css('color', 'yellow');
+
+            // $('tr').eq(1)
+            //     .children('td:gt(0)')
+            //     .css('color', 'yellow');
+
+            $('td:contains("10")').css('color', 'yellow');
         }
         function click2() {
-            $("table>tbody>tr").eq(2)
-                .children('td')
-                .next()
-                .css('color', 'yellow');
+            clear();
+            // $("table>tbody>tr").eq(2)
+            //     .children('td')
+            //     .next()
+            //     .css('color', 'yellow');
+
+                $('td:contains("20")').css('color', 'yellow');
         }
         function click3() {
-            $("table>tbody>tr")
-                .next()
-                .find(':eq(1)')
-                .eq(0)
-                .css('color', 'yellow');
+            clear();
+            // $("table>tbody>tr")
+            //     .next()
+            //     .find(':eq(1)')
+            //     .eq(0)
+            //     .css('color', 'yellow');
 
-                $("table>tbody>tr")
-                .next()
-                .find(':eq(1)')
-                .eq(1)
-                .css('color', 'yellow');
+            // $("table>tbody>tr")
+            //     .next()
+            //     .find(':eq(1)')
+            //     .eq(1)
+            //     .css('color', 'yellow');
+
+            // $("td:eq('1')").css('color','yellow');
+            // $("td:eq('4')").css('color','yellow');
+
+            $("td:nth-of-type(2):not(tr:last-child td)").css('color','yellow');
+            $("td:eq('1'),td:eq('4')").css('color','yellow');
         }
         function click4() {
-            $("table>tbody>tr")
-                .next()
-                .find(':eq(2)')
-                .eq(0)
-                .css('color', 'yellow');
+            clear();
+            // $("table>tbody>tr")
+            //     .next()
+            //     .find(':eq(2)')
+            //     .eq(0)
+            //     .css('color', 'yellow');
 
-                $("table>tbody>tr")
-                .next()
-                .find(':eq(2)')
-                .eq(1)
-                .css('color', 'yellow');
+            // $("table>tbody>tr")
+            //     .next()
+            //     .find(':eq(2)')
+            //     .eq(1)
+            //     .css('color', 'yellow');
+
+            $("td:eq('2')").css('color','yellow');
+            $("td:eq('5')").css('color','yellow');
         }
 
     </script>
