@@ -1,6 +1,6 @@
 /* 공용 스타일 작성 시작*/
 div {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     box-sizing: border-box;
     /* box-shadow: 5px 5px 10px 5px gray */
 }
@@ -105,6 +105,7 @@ div {
     height: 45%;
     margin: 1%;
     background-color: white;
+    box-shadow: 1px 1px 1px 1px gray;
 }
 
 /* 상품 스타일 작성 끝*/
@@ -115,9 +116,12 @@ div {
 
 /* 장바구니 스타일 작성 시작*/
 .shopping-basket {
-    width : 30%;
-    height : 100%;
+    width : 28%;
+    height : 96%;
     background-color: white;
+    box-sizing: border-box;
+    margin: auto;
+    box-shadow: 1px 1px 1px 1px gray; 
 }
 
 /* 장바구니 스타일 작성 끝*/
