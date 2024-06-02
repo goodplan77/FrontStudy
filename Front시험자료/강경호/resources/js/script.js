@@ -113,43 +113,32 @@ $(document).on('mouseleave', '#basket-item>input[type=button]', function (e) {
 // ---------------- 검색기능과 관련된 코드 시작----------------
 
 // load
-// 공통적으로 , 전달된 키워드 값을 통해 item의 display 속성을 변경 시킴 block - none
 $(function () {
 
     // 1. 검색창 - 엔터 키 입력시 값 초기화 후 값 전달
     $('.search-form-keyword>input[type=text]').on('keydown', function (key) {
-        var $items = $('.item');
-        var $keyword = $(this).val().toUpperCase();
-
-        if (key.keyCode == 13) {
-            console.log($keyword, $keyword.length);
-            $items.each(function (index, ele) {
-                var $itemtitle = $(ele).children("#item-title").prop('innerText').toUpperCase();
-
-                ($itemtitle.includes($keyword)) && ($(this).css('display', 'block'));
-                ($itemtitle.includes($keyword)) || ($(this).css('display', 'none'));
-            });
-
-            $(this).val("");
-        }
+        if (key.keyCode == 13) serarch();
     });
 
     // 2. 검색창 옆 button 클릭시 값 초기화 후 값 전달
-    $('.search-form-btn>input[type=button]').click(function () {
-        var $items = $('.item');
-        var $keywordset = $('.search-form-keyword>input[type=text]');
-        var $keyword = $keywordset.val().toUpperCase();
-
-        $items.each(function (index, ele) {
-            var $itemtitle = $(ele).children("#item-title").prop('innerText').toUpperCase();
-
-            ($itemtitle.includes($keyword)) && ($(this).css('display', 'block'));
-            ($itemtitle.includes($keyword)) || ($(this).css('display', 'none'));
-        });
-
-        $keywordset.val("");
-    });
+    $('.search-form-btn>input[type=button]').click(serarch);
 });
+
+// 전달된 키워드 값을 통해 item의 display 속성을 변경 시킴 block - none
+function serarch() {
+    var $items = $('.item');
+    var $keywordset = $('.search-form-keyword>input[type=text]');
+    var $keyword = $keywordset.val().toUpperCase();
+
+    $items.each(function (index, ele) {
+        var $itemtitle = $(ele).children("#item-title").prop('innerText').toUpperCase();
+
+        ($itemtitle.includes($keyword)) && ($(this).css('display', 'block'));
+        ($itemtitle.includes($keyword)) || ($(this).css('display', 'none'));
+    });
+
+    $keywordset.val("");
+}
 
 // ---------------- 검색기능과 관련된 코드 끝----------------
 
